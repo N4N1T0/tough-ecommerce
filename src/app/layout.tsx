@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Poppins, Kaushan_Script } from 'next/font/google'
 import './globals.css'
+import Navbar from '@/components/navbar'
 
 const poppins = Poppins({ weight: ['400', '700'], subsets: ['latin'], variable: '--poppins' })
 const kashua = Kaushan_Script({ weight: ['400'], subsets: ['latin'], variable: '--kashua' })
@@ -17,7 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang='es'>
-      <body className={`${poppins.variable} ${kashua.variable}`}>{children}</body>
+      <body className={`${poppins.variable} ${kashua.variable}`}>
+        <Navbar />
+        {children}
+      </body>
     </html>
   )
 }
