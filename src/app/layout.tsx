@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Poppins, Kaushan_Script } from 'next/font/google'
 import './globals.css'
-import Navbar from '@/components/navbar'
+import Navbar from '@/components/layout/navbar'
 
 const poppins = Poppins({ weight: ['400', '700'], subsets: ['latin'], variable: '--poppins' })
 const kashua = Kaushan_Script({ weight: ['400'], subsets: ['latin'], variable: '--kashua' })
