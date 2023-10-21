@@ -37,7 +37,7 @@ function NavSheet() {
                     <summary className='font-bold text-xl border-b-2 w-full pb-1 [open]:bg-black'>{label}</summary>
                     <div className='flex flex-col uppercase gap-3 px-5 py-3 [&>a]:font-bold [&>a]:border-b-2'>
                       <Link href='/' >Login</Link>
-                      <Link href='/' >Signin</Link>
+                      <Link href='/' >SignUn</Link>
                       <Link href='/' >Tough Team</Link>
                     </div>
                   </details>

@@ -8,6 +8,8 @@ import {
   PopoverTrigger
 } from '@/components/ui/popover'
 
+import LoginSignTabs from './login-singup-tabs'
+
 function UserPopup({
   children
 }: {
@@ -16,11 +18,15 @@ function UserPopup({
   return (
     <Popover>
       <PopoverTrigger className='hidden md:block'>{children}</PopoverTrigger>
-      <PopoverContent className='bg-white flex flex-col gap-3 uppercase'>
+      <PopoverContent className='bg-white flex flex-col gap-3'>
         {/* Supabase login and Signin */}
-        <Link href='/' className='hover:text-gray-700 transition-colors duration-150'>Login</Link>
-        <Link href='/' className='hover:text-gray-700 transition-colors duration-150'>Signin</Link>
-        <Link href='/' className='hover:text-gray-700 transition-colors duration-150'>Tough Team</Link>
+        <LoginSignTabs tab='login'>
+          <p className='hover:text-gray-700 transition-colors duration-150 uppercase text-left'>Login</p>
+        </LoginSignTabs>
+        <LoginSignTabs tab='signup'>
+          <p className='hover:text-gray-700 transition-colors duration-150 uppercase text-left'>Sign Up</p>
+        </LoginSignTabs>
+        <Link href='/team-tough' className='hover:text-gray-700 transition-colors duration-150 uppercase'>Tough Team</Link>
       </PopoverContent>
     </Popover>
 
