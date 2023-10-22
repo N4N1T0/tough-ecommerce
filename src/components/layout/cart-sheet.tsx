@@ -8,11 +8,7 @@ import {
   SheetTrigger
 } from '@/components/ui/sheet'
 
-const CartSheet = ({
-  children
-}: {
-  children: React.ReactNode
-}) => {
+const CartSheet = ({ children }: { children: React.ReactNode }) => {
   return (
     <Sheet>
       <SheetTrigger>{children}</SheetTrigger>

@@ -8,12 +8,16 @@ import { navlinks } from '@/content'
 import { ShoppingCart, User } from 'lucide-react'
 
 // Components Imports
-import PromotionDialog from './promotion-dialog'
+import { PromotionDialog, CodeDialog } from './promotions-dialogs'
 import CartSheet from './cart-sheet'
 import NavSheet from './navbar-sheet'
 import UserPopup from './user-popup'
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
 
-export default function Navbar() {
+export default async function Navbar() {
+  const supabase = createServerComponentClient<Database>({ cookies })
+  const { data: { session } } = await supabase.auth.getSession()
   return (
     <header className='pt-5 space-y-4 w-full fixed bg-white z-10'>
       <nav className='flex justify-between items-center px-8'>
@@ -42,10 +46,19 @@ export default function Navbar() {
       </nav>
       <div className='bg-black text-white w-full py-3 text-center font-bold tracking-wider'>
         {/* Dialog */}
-        <PromotionDialog>
-          <p className='md:px-0 px-5 hover:text-gray-300 transition-colors duration-200'>SIGN UP FOR EVERLAST NEWS & OFFERS AND GET 15% OFF</p>
-        </PromotionDialog>
-      </div>
-    </header>
+        {(session != null)
+          ? (
+            <CodeDialog>
+              <p className='md:px-0 px-5 hover:text-gray-300 transition-colors duration-200'>UNLOCK UP TO 50% OFF YOUR ENTIRE ORDER</p>
+            </CodeDialog>
+          )
+          : (
+            <PromotionDialog>
+              <p className='md:px-0 px-5 hover:text-gray-300 transition-colors duration-200'>SIGN UP FOR EVERLAST NEWS & OFFERS AND GET 15% OFF</p>
+            </PromotionDialog>
+          )
+        }
+      </div >
+    </header >
   )
 }
