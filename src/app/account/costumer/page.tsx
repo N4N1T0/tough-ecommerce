@@ -1,4 +1,13 @@
-export default function AccountCostuner() {
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
+
+export default async function AccountCostuner() {
+  const supabase = createServerComponentClient({ cookies })
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
+  const metadata = user?.user_metadata
+
   return (
     <section className='space-y-5'>
       <div>
@@ -15,7 +24,6 @@ export default function AccountCostuner() {
             <p>Adrian Alavrez Alon</p>
           </div>
           <div>
-
           </div>
         </div>
       </div>

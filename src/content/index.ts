@@ -53,10 +53,6 @@ export const accountLinks = [
     link: '/account/wish-list'
   },
   {
-    label: 'My Social Accounts',
-    link: '/account/rss'
-  },
-  {
     label: 'My Returns',
     link: '/account'
   },

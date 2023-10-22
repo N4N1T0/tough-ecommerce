@@ -8,22 +8,12 @@ export const LoginBtn = ({ children, provider }: { children: React.ReactNode, pr
   const supabase = createClientComponentClient<Database>()
 
   const handleSign = async () => {
-    const width = 500
-    const height = 600
-    const left = window.innerWidth / 2 - width / 2 + window.screenX
-    const top = window.innerHeight / 2 - height / 2 + window.screenY
-    const options = `width=${width},height=${height},left=${left},top=${top},status=no,scrollbars=no,resizable=no`
-
-    const popup = window.open('', '_blank', options)
-
     await supabase.auth.signInWithOAuth({
       provider,
       options: {
         redirectTo: 'http://localhost:3000/auth/callback'
       }
     })
-
-    popup?.close()
   }
 
   return (
