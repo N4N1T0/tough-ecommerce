@@ -20,10 +20,10 @@ const LoginSignTabs = ({ tab, children }: { tab: 'signup' | 'login', children: R
             <TabsTrigger value='signup' className='uppercase text-lg hover:text-gray-600 transition-colors duration-200'>Sign Up</TabsTrigger>
           </TabsList>
           <TabsContent value='login' className='flex flex-col gap-5 w-full p-3'>
-            <form action='' className='space-y-5 py-5'>
-              <input type='text' placeholder='Email' className='border-gray-500 border p-2 w-full' />
+            <form action='/auth/login-with-password' method='post' className='space-y-5 py-5'>
+              <input type='text' name='email' placeholder='Email' className='border-gray-500 border p-2 w-full' />
               <div className='text-right'>
-                <input type='password' placeholder='Password' className='border-gray-500 border p-2 w-full' />
+                <input type='password' name='password' placeholder='Password' className='border-gray-500 border p-2 w-full' />
                 <p className='text-sm font-bold pt-1'>Forgot Your Password?</p>
               </div>
               <button className='uppercase bg-black text-white w-full py-2 hover:bg-white hover:text-black transition-colors duration-200'>Sign In</button>

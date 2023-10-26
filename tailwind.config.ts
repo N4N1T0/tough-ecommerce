@@ -8,16 +8,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        poppins: 'var(--poppins)',
-        kashua: 'var(--kashua)'
-      },
       colors: {
-        border: 'hsl(var(--border))',
+        border: '#9b9fa8',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))'
+        background: '#ffffff',
+        foreground: '#000000'
       },
       borderRadius: {
         lg: 'var(--radius)',

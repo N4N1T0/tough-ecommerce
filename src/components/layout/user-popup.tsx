@@ -6,15 +6,18 @@ import { cookies } from 'next/headers'
 import {
   Popover,
   PopoverContent,
-  PopoverTrigger
+  PopoverTrigger,
+  PopoverClose
 } from '@/components/ui/popover'
 
 // Components Imports
 import LoginSignTabs from './login-singup-tabs'
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { LogoutBtn } from '../login/login-buttons'
 
-async function UserPopup({ children }: { children: React.ReactNode }) {
+// Supabase Imports
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+
+const UserPopup = async ({ children }: { children: React.ReactNode }) => {
   const supabase = createServerComponentClient({ cookies })
   const { data: { session } } = await supabase.auth.getSession()
 
@@ -23,8 +26,12 @@ async function UserPopup({ children }: { children: React.ReactNode }) {
     <Popover>
       <PopoverTrigger className='hidden md:block'>{children}</PopoverTrigger >
       <PopoverContent className='bg-white flex flex-col gap-3'>
-        <Link href='/account/costumer' className='hover:text-gray-700 transition-colors duration-150 uppercase text-left'>Account</Link>
-        <Link href='/account/whlist' className='hover:text-gray-700 transition-colors duration-150 uppercase text-left'>Whishlist</Link>
+        <PopoverClose asChild>
+          <Link href='/account/costumer' className='hover:text-gray-700 transition-colors duration-150 uppercase text-left'>Account</Link>
+        </PopoverClose>
+        <PopoverClose asChild>
+          <Link href='/account/wish-list' className='hover:text-gray-700 transition-colors duration-150 uppercase text-left'>Whishlist</Link>
+        </PopoverClose>
         <LogoutBtn className='hover:text-gray-700 transition-colors duration-150 uppercase text-left' />
       </PopoverContent>
     </Popover>
@@ -39,7 +46,9 @@ async function UserPopup({ children }: { children: React.ReactNode }) {
         <LoginSignTabs tab='signup'>
           <p className='hover:text-gray-700 transition-colors duration-150 uppercase text-left'>Sign Up</p>
         </LoginSignTabs>
-        <Link href='/team-tough' className='hover:text-gray-700 transition-colors duration-150 uppercase'>Tough Team</Link>
+        <PopoverClose asChild>
+          <Link href='/team-tough' className='hover:text-gray-700 transition-colors duration-150 uppercase'>Tough Team</Link>
+        </PopoverClose>
       </PopoverContent>
     </Popover >
   )

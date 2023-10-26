@@ -24,7 +24,7 @@ export const LoginBtn = ({ children, provider }: { children: React.ReactNode, pr
 }
 
 export const LogoutBtn = ({ className }: { className?: string }) => {
-  const supabase = createClientComponentClient()
+  const supabase = createClientComponentClient<Database>()
   const router = useRouter()
 
   const handleSignOut = async () => {

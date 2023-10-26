@@ -1,27 +1,108 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+// Next.js imports
 import { cookies } from 'next/headers'
+import Link from 'next/link'
+
+// Supabase Imports
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+
+// Components Imports
+import HeaderLine from '@/components/account/header-line'
 
 export default async function AccountCostuner() {
-  const supabase = createServerComponentClient({ cookies })
-  const {
-    data: { user }
-  } = await supabase.auth.getUser()
-  const metadata = user?.user_metadata
+  // Supabse Server and data fetching
+  const supabase = createServerComponentClient<Database>({ cookies })
+  const { data: { user } } = await supabase.auth.getUser()
+  const { data, error } = await supabase.from('profiles').select('*, address(*)').eq('id', user?.id)
+
+  if (error != null) {
+    return <h1>{error.message}</h1>
+  }
 
   return (
-    <section className='space-y-5'>
+    <section className='space-y-10'>
       <div>
         <h1 className='font-bold text-xl uppercase mb-5'>My Account</h1>
         < p className='mb-1' > Hello, Adrian Álvarez Alonso!</p >
         <small>From your My Account Dashboard you have the ability to view a snapshot of your recent account activity and update your account information. Select a link below to view or edit information.</small>
       </div >
+      {/* Account Information */}
       <div>
-        <h2 className='font-bold mb-2'>ACCOUNT INFORMATION</h2>
-        <hr className='w-full h-[2px] bg-gray-500' />
-        <div className='flex justify-center items-center gap-10'>
+        <HeaderLine text='Account information' />
+        <div className='flex justify-between flex-col md:flex-row items-center gap-10'>
+          <div className='text-left py-5'>
+            <h3 className='font-semibold mb-3'>Conctact Information</h3>
+            <p>{data[0].name}</p>
+            <p>{data[0].email}</p>
+            <Link href='/account/costumer/edit' className='underline hover:text-gray-600 transition-colors duration-200'>Edit</Link>
+          </div>
+          <div className='text-left'>
+            <h3 className='font-semibold mb-3'>Email Lists</h3>
+            {data[0].future_deals_signup === true
+              ? (
+                <p>You are subscribed to &quot;Future Deals&quot;.</p>
+              )
+              : (
+                <></>
+              )}
+            {data[0].new_products_alerts_signup === true
+              ? (
+                <p>You are subscribed to &quot;New Products&quot;.</p>
+              )
+              : (
+                <></>
+              )}
+            <Link href='/account/costumer/email' className='underline hover:text-gray-600 transition-colors duration-200'>Edit</Link>
+          </div>
           <div>
-            <h3>Conctact Information</h3>
-            <p>Adrian Alavrez Alon</p>
+          </div>
+        </div>
+      </div>
+      {/*  */}
+      <div>
+        <HeaderLine text='Address Book' />
+        <div className='flex justify-between items-start flex-col md:flex-row gap-10'>
+          <div className='text-left py-5'>
+            <h3 className='font-semibold mb-3'>Default Shipping Address</h3>
+            {data[0].address.length === 0
+              ? (
+                <>
+                  <p>You dont have any default shipping address</p>
+                  <Link href='/account/costumer/address' className='underline hover:text-gray-600 transition-colors duration-200'>Add new address</Link>
+                </>
+              )
+              : (
+                <>
+                  {data[0].address.filter((item) => item.default).map((item) => (
+                    <ul key={item.id} className='border-[1px] p-5 border-black'>
+                      {Object.keys(item).slice(1, 5).map((keyName) => (
+                        <li className='travelcompany-input' key={item.id}>
+                          <span className='input-label'>{item[keyName as keyof typeof item]}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ))}
+                </>
+              )}
+          </div>
+          <div className='text-left py-5'>
+            <h3 className='font-semibold mb-3'>Other Shipping Address</h3>
+            {data[0].address.length === 0
+              ? (
+                <>
+                  <p>You dont have any shipping address in your address book</p>
+                  <Link href='/account/costumer/address' className='underline hover:text-gray-600 transition-colors duration-200'>Add new address</Link>
+                </>
+              )
+              : (
+                <ul className='space-y-5 py-5'>
+                  {data[0].address?.filter((item) => !item.default).map((item, idx) => (
+                    <li key={`Address-${item.id}`} className='border-[1px] p-5 border-border' >
+                      <p>{item.street} , {item.apartment} , {item.city} , {item.country}</p>
+                      <Link href={`/account/costumer/address/${item.id}`} className='underline hover:text-gray-600 transition-colors duration-200'>Edit</Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
           </div>
           <div>
           </div>

@@ -15,7 +15,7 @@ import UserPopup from './user-popup'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 
-export default async function Navbar() {
+const Navbar = async () => {
   const supabase = createServerComponentClient<Database>({ cookies })
   const { data: { session } } = await supabase.auth.getSession()
   return (
@@ -62,3 +62,5 @@ export default async function Navbar() {
     </header >
   )
 }
+
+export default Navbar

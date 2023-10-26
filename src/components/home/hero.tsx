@@ -6,7 +6,7 @@ import Link from 'next/link'
 import HeroDesktop from '@/assets/ELITE2-SHOES-Desktop.webp'
 import HeroMobile from '@/assets/ELITE2-SHOES-Mobile.webp'
 
-function Hero() {
+const Hero = () => {
   return (
     <section className='relative w-fit h-fit' id='hero'>
       <Image src={HeroDesktop} alt='Elite boxing shoes 2 Desktop version' className='hidden sm:block' />
