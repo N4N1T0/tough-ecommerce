@@ -21,7 +21,7 @@ export default async function AccountCostuner() {
     <section className='space-y-10'>
       <div>
         <h1 className='font-bold text-xl uppercase mb-5'>My Account</h1>
-        < p className='mb-1' > Hello, Adrian Álvarez Alonso!</p >
+        <p className='mb-1' > Hello, Adrian Álvarez Alonso!</p >
         <small>From your My Account Dashboard you have the ability to view a snapshot of your recent account activity and update your account information. Select a link below to view or edit information.</small>
       </div >
       {/* Account Information */}

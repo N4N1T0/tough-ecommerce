@@ -58,7 +58,7 @@ export const accountLinks = [
   },
   {
     label: 'My Returns',
-    link: '/account'
+    link: '/account/returns'
   },
   {
     label: 'Personal Trainers',
