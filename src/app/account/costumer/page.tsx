@@ -11,8 +11,7 @@ import HeaderLine from '@/components/account/header-line'
 export default async function AccountCostuner() {
   // Supabse Server and data fetching
   const supabase = createServerComponentClient<Database>({ cookies })
-  const { data: { user } } = await supabase.auth.getUser()
-  const { data, error } = await supabase.from('profiles').select('*, address(*)').eq('id', user?.id)
+  const { data, error } = await supabase.from('profiles').select('*, address(*)')
 
   if (error != null) {
     return <h1>{error.message}</h1>

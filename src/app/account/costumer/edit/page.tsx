@@ -27,9 +27,11 @@ export default function CostumerEdit() {
   } = useForm({
     defaultValues: async () => {
       const { data: { user } } = await supabase.auth.getUser()
-      const { data } = await supabase.from('profiles').select('*').eq('id', user?.id)
-      if (data !== null) {
-        return data[0]
+      if (user?.id !== undefined) {
+        const { data } = await supabase.from('profiles').select('*').eq('id', user?.id)
+        if (data !== null) {
+          return data[0]
+        }
       }
     }
   })
@@ -37,32 +39,34 @@ export default function CostumerEdit() {
   // Onsubmnit function for the form
   const onSubmit = async (formData: FieldValues) => {
     const { data: { user } } = await supabase.auth.getUser()
-    const { data, error } = await supabase
-      .from('profiles')
-      .update({
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        password: formData.password
-      })
-      .eq('id', user?.id)
-      .select()
+    if (user?.id !== undefined) {
+      const { data, error } = await supabase
+        .from('profiles')
+        .update({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          password: formData.password
+        })
+        .eq('id', user?.id)
+        .select()
 
-    if (data !== null) {
-      toast({
-        title: 'Succesfully Updated',
-        description: 'The account information was updated without a problem',
-        duration: 4000
-      })
-    }
+      if (data !== null) {
+        toast({
+          title: 'Succesfully Updated',
+          description: 'The account information was updated without a problem',
+          duration: 4000
+        })
+      }
 
-    if (error !== null) {
-      toast({
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem updating the account information',
-        variant: 'destructive',
-        duration: 4000
-      })
+      if (error !== null) {
+        toast({
+          title: 'Uh oh! Something went wrong.',
+          description: 'There was a problem updating the account information',
+          variant: 'destructive',
+          duration: 4000
+        })
+      }
     }
   }
 

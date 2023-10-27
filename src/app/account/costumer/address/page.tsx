@@ -30,8 +30,10 @@ export default function AddressPage() {
   useEffect(() => {
     const getAddress = async () => {
       const { data: { user } } = await supabase.auth.getUser()
-      const { data } = await supabase.from('address').select('*').eq('user_id', user?.id)
-      setAddress(data)
+      if (user?.id !== undefined) {
+        const { data } = await supabase.from('address').select('*').eq('user_id', user?.id)
+        setAddress(data)
+      }
     }
 
     getAddress()
