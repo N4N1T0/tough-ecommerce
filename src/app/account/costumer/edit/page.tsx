@@ -81,7 +81,7 @@ export default function CostumerEdit() {
           <LabelInput title='Phone Number' id='phone' register={register('phone')} type='tel' />
           <LabelInput title='Password' id='password' register={register('password')} type='password' />
           <LabelInput title='Confirm Password' id='confirm_password' type='password' register={register('confirm_password', {
-            validate: (value) => value === getValues('password') || 'Password must match'
+            validate: (value: string) => value === getValues('password') || 'Password must match'
           })} />
           {(errors.confirm_password != null) && (
             <p className='text-red-700'>{errors.confirm_password.message?.toString()}</p>

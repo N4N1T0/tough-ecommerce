@@ -1,3 +1,11 @@
+'use client'
+
+// Next.js Imports
+import SocialMediaLogin from './social-media-login'
+
+// React Hook Form Imports
+import { useForm } from 'react-hook-form'
+
 // Ui Imports
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
@@ -5,11 +13,22 @@ import {
   DialogContent,
   DialogTrigger
 } from '@/components/ui/dialog'
-
-// Next.js Imports
-import SocialMediaLogin from './social-media-login'
+import LabelInput from '../account/label-input'
 
 const LoginSignTabs = ({ tab, children }: { tab: 'signup' | 'login', children: React.ReactNode }) => {
+  const {
+    register,
+    formState: { errors, isSubmitting },
+    getValues
+  } = useForm({
+    defaultValues: {
+      full_name: '',
+      email: '',
+      password: '',
+      confirm_password: ''
+    }
+  })
+
   return (
     <Dialog>
       <DialogTrigger>{children}</DialogTrigger>
@@ -36,25 +55,18 @@ const LoginSignTabs = ({ tab, children }: { tab: 'signup' | 'login', children: R
             <SocialMediaLogin />
           </TabsContent>
           <TabsContent value='signup' className='flex flex-col gap-5 w-full p-3'>
-            <form className='flex flex-col gap-5'>
-              <div className='flex gap-5'>
-                <label htmlFor='first name' className='font-bold'> First Name <span className='text-red-800'>*</span>
-                  <input type='text' id='first name' className='border-gray-500 border p-2 w-full' />
-                </label>
-                <label htmlFor='last name' className='font-bold'> Last Name <span className='text-red-800'>*</span>
-                  <input type='text' id='last name' className='border-gray-500 border p-2 w-full' />
-                </label>
-              </div>
-              <label htmlFor='email' className='font-bold'> Email <span className='text-red-800'>*</span>
-                <input type='email' id='email' className='border-gray-500 border p-2 w-full' />
-              </label>
-              <label htmlFor='password' className='font-bold'> Password <span className='text-red-800'>*</span>
-                <input type='password' id='password' className='border-gray-500 border p-2 w-full' />
-              </label>
-              <label htmlFor='password' className='font-bold'> Confirm Password <span className='text-red-800'>*</span>
-                <input type='password' id='password' className='border-gray-500 border p-2 w-full' />
-              </label>
-              <button className='uppercase bg-black text-white w-full py-2 hover:bg-white hover:text-black transition-colors duration-200'>Create an Account</button>
+            <form action='auth/signup-with-password' method='post'>
+              <fieldset disabled={isSubmitting} className='group flex flex-col gap-5'>
+                <LabelInput id='full_name' title='Full Name' type='text' required register={register('full_name', { required: 'Full Name is required' })} error={errors?.full_name?.message?.toString()} />
+                <LabelInput id='email' title='Email' type='email' required register={register('email', { required: 'Email is required' })} error={errors?.email?.message?.toString()} />
+                <LabelInput id='password' title='Password' type='password' required register={register('password', { required: 'Password is required' })} error={errors?.password?.message?.toString()} />
+                <LabelInput id='confirm_password' title='Confirm Password' type='password' required register={register('confirm_password', {
+                  validate: (value: string) => value === getValues('password') || 'Password must match',
+                  required: 'Confirm Password is required',
+                  minLength: 6
+                })} error={errors?.confirm_password?.message?.toString()} />
+                <button className='uppercase bg-black text-white w-full py-2 hover:bg-white hover:text-black transition-colors duration-200 group-disabled:pointer-events-none'>Create an Account</button>
+              </fieldset>
             </form>
             <div className='flex flex-row justify-center items-center'>
               <hr className='border-none bg-gray-500 h-[1px] flex-1' />

@@ -21,7 +21,7 @@ export default async function AccountCostuner() {
     <section className='space-y-10'>
       <div>
         <h1 className='font-bold text-xl uppercase mb-5'>My Account</h1>
-        <p className='mb-1' > Hello, Adrian Álvarez Alonso!</p >
+        <p className='mb-1' > Hello, {data[0]?.name === null ? 'New User' : data[0]?.name}!</p >
         <small>From your My Account Dashboard you have the ability to view a snapshot of your recent account activity and update your account information. Select a link below to view or edit information.</small>
       </div >
       {/* Account Information */}
@@ -36,14 +36,14 @@ export default async function AccountCostuner() {
           </div>
           <div className='text-left'>
             <h3 className='font-semibold mb-3'>Email Lists</h3>
-            {data[0].future_deals_signup === true
+            {data[0].future_deals_signup
               ? (
                 <p>You are subscribed to &quot;Future Deals&quot;.</p>
               )
               : (
                 <></>
               )}
-            {data[0].new_products_alerts_signup === true
+            {data[0].new_products_alerts_signup
               ? (
                 <p>You are subscribed to &quot;New Products&quot;.</p>
               )
