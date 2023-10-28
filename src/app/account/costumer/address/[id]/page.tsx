@@ -22,7 +22,7 @@ import { ToastAction } from '@/components/ui/toast'
 import { countryData } from '@/content'
 import Link from 'next/link'
 
-export default function EditAddress({ params }: { params: { slug: string } }) {
+export default function EditAddress({ params }: { params: { id: string } }) {
   const [address, setAddress] = useState<Array<Database['public']['Tables']['address']['Row']> | null>([])
   const [userId, setUserId] = useState<string | undefined>(undefined)
   const supabase = createClientComponentClient<Database>()
@@ -32,7 +32,7 @@ export default function EditAddress({ params }: { params: { slug: string } }) {
   useEffect(() => {
     const getAddress = async () => {
       const { data: { user } } = await supabase.auth.getUser()
-      const { data } = await supabase.from('address').select('*').eq('id', params.slug)
+      const { data } = await supabase.from('address').select('*').eq('id', params.id)
       setAddress(data)
       setUserId(user?.id)
     }
@@ -54,7 +54,7 @@ export default function EditAddress({ params }: { params: { slug: string } }) {
     formState: { errors, isSubmitting }
   } = useForm({
     defaultValues: async () => {
-      const { data } = await supabase.from('address').select('*').eq('id', params.slug)
+      const { data } = await supabase.from('address').select('*').eq('id', params.id)
       if (data !== null) {
         return data[0]
       }
@@ -75,7 +75,7 @@ export default function EditAddress({ params }: { params: { slug: string } }) {
         default: formData.default,
         user_id: user?.id
       })
-      .eq('id', params.slug)
+      .eq('id', params.id)
       .select()
 
     if (data !== null) {

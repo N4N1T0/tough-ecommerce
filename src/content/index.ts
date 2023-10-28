@@ -1,27 +1,27 @@
 export const navlinks = [
   {
     label: 'BOXING',
-    link: '/boxing'
+    link: '/products/boxing/all'
   },
   {
     label: 'MMA',
-    link: '/mma'
+    link: '/products/mma/all'
   },
   {
     label: 'FITNESS',
-    link: '/fitness'
+    link: '/products/fitness/all'
   },
   {
     label: 'FASHION',
-    link: '/fashion'
+    link: '/products/fashion/all'
   },
   {
     label: 'SALE',
-    link: '/sale'
+    link: '/products/sale/all'
   },
   {
     label: 'NEW',
-    link: '/new'
+    link: '/products/new/all'
   },
   {
     label: 'GLOVE FINDER',
@@ -311,4 +311,116 @@ export const countryData = [
 { value: 'Yemen', label: 'Yemen' },
 { value: 'Zambia', label: 'Zambia' },
 { value: 'Zimbabwe', label: 'Zimbabwe' }
+]
+
+export const productsLinks = [
+  {
+    label: 'Boxing',
+    internalLinks: [
+      {
+        label: 'All Products',
+        link: '/products/boxing/all'
+      },
+      {
+        label: 'Gloves',
+        link: '/products/boxing/gloves'
+      },
+      {
+        label: 'HandWrap',
+        link: '/products/boxing/handwrap'
+      },
+      {
+        label: 'Pads',
+        link: '/products/boxing/pads'
+      },
+      {
+        label: 'Footwear',
+        link: '/products/boxing/shoes'
+      },
+      {
+        label: 'Others',
+        link: '/products/boxing/others'
+      }
+    ]
+  },
+  {
+    label: 'MMA',
+    internalLinks: [
+      {
+        label: 'All Products',
+        link: '/products/mma/all'
+      },
+      {
+        label: 'Gloves',
+        link: '/products/mma/gloves'
+      },
+      {
+        label: 'Hand Wrap',
+        link: '/products/mma/handwrap'
+      },
+      {
+        label: 'Pads',
+        link: '/products/mma/pads'
+      },
+      {
+        label: 'Others',
+        link: '/products/mma/others'
+      }
+    ]
+  },
+  {
+    label: 'Fitness',
+    internalLinks: [
+      {
+        label: 'All Products',
+        link: '/products/fitness/all'
+      },
+      {
+        label: 'Weights',
+        link: '/products/fitness/weights'
+      },
+      {
+        label: 'Others',
+        link: '/products/fitness/others'
+      }
+    ]
+  },
+  {
+    label: 'Fashion',
+    link: '/products/fashion',
+    internalLinks: [
+      {
+        label: 'All Products',
+        link: '/products/fashion/all'
+      },
+      {
+        label: 'Men',
+        link: '/products/fashion/men'
+      },
+      {
+        label: 'Women',
+        link: '/products/fashion/women'
+      }
+    ]
+  },
+  {
+    label: 'Sale',
+    link: '/products/sale',
+    internalLinks: [
+      {
+        label: 'All Products',
+        link: '/products/sale/all'
+      }
+    ]
+  },
+  {
+    label: 'New',
+    link: '/products/new',
+    internalLinks: [
+      {
+        label: 'All Products',
+        link: '/products/new/all'
+      }
+    ]
+  }
 ]
