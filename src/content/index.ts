@@ -326,8 +326,8 @@ export const productsLinks = [
         link: '/products/boxing/gloves'
       },
       {
-        label: 'HandWrap',
-        link: '/products/boxing/handwrap'
+        label: 'HandWraps',
+        link: '/products/boxing/handwraps'
       },
       {
         label: 'Pads',
@@ -355,12 +355,16 @@ export const productsLinks = [
         link: '/products/mma/gloves'
       },
       {
-        label: 'Hand Wrap',
-        link: '/products/mma/handwrap'
+        label: 'HandWraps',
+        link: '/products/mma/handwraps'
       },
       {
         label: 'Pads',
         link: '/products/mma/pads'
+      },
+      {
+        label: 'ShinGuards',
+        link: '/products/mma/shinguards'
       },
       {
         label: 'Others',

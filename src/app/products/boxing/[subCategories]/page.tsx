@@ -1,20 +1,34 @@
-import ProductsLayout from '@/components/products/layout'
-import WhishListButton from '@/components/products/whish-list-button'
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
+// Next.js Imports
 import Image from 'next/image'
 import Link from 'next/link'
+import { cookies } from 'next/headers'
+
+// Components Imports
+import ProductsLayout from '@/components/products/layout'
+import WhishListButton from '@/components/products/whish-list-button'
+
+// Supabse Imports
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 
 export default async function BoxingPage({ params }: { params: { subCategories: string } }) {
+  // Supabse CLient
   const supabase = createServerComponentClient<Database>({ cookies })
 
+  // User for the id
   const { data: { user } } = await supabase.auth.getUser()
 
+  // initializing the products array
   let products: Array<Database['public']['Tables']['products']['Row']> = []
-  const { data: wishListData } = await supabase.from('wishlist').select().eq('user_id', user?.id)
 
+  // fetching the Whislist
+  const { data: wishListData } = await supabase.from('wishlist').select()
+
+  // Conditionally fetching the products acording to the subCategory
   if (params.subCategories === 'all') {
     const { data } = await supabase.from('products').select('*, wishlist(*)').contains('sports', ['boxing'])
+    products = data as Array<Database['public']['Tables']['products']['Row']>
+  } else if (params.subCategories === 'others') {
+    const { data } = await supabase.from('products').select().contains('sports', ['boxing']).or('equipment_type.in.(cup,bag,mouthguard,jumprope,gadget,headgear)')
     products = data as Array<Database['public']['Tables']['products']['Row']>
   } else {
     const { data } = await supabase.from('products').select().contains('sports', ['boxing']).eq('equipment_type', params.subCategories)
@@ -41,7 +55,7 @@ export default async function BoxingPage({ params }: { params: { subCategories: 
               </div>
               <div className='flex justify-between items-center'>
                 {item.sale !== null ? <div className='text-xl'><span className='line-through text-gray-400'>{item.price} </span> ${item.sale}</div> : <div className='text-xl'>{item.price}</div>}
-                {item.new === true && <Link href='/products/new' className='uppercase px-2 py-1 bg-gray-400 w-fit hover:bg-white transition-colors duration-200'>New</Link>}
+                {item.new && <Link href='/products/new' className='uppercase px-2 py-1 bg-gray-400 w-fit hover:bg-white transition-colors duration-200'>New</Link>}
                 {item.sale !== null && <Link href='/products/sale' className='uppercase px-2 py-1 bg-gray-400 w-fit hover:bg-white transition-colors duration-200'>Sale</Link>}
               </div>
               <hr className='bg-border/60 h-[1px] border-0' />
