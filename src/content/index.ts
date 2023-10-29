@@ -59,10 +59,6 @@ export const accountLinks = [
   {
     label: 'My Returns',
     link: '/account/returns'
-  },
-  {
-    label: 'Personal Trainers',
-    link: '/account/pt'
   }
 ]
 
