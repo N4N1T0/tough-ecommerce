@@ -18,7 +18,7 @@ export default async function AccountCostuner() {
   }
 
   return (
-    <section className='space-y-10'>
+    <section className='md:space-y-10 space-y-5'>
       <div>
         <h1 className='font-bold text-xl uppercase mb-5'>My Account</h1>
         <p className='mb-1' > Hello, {data[0]?.name === null ? 'New User' : data[0]?.name}!</p >
@@ -27,7 +27,7 @@ export default async function AccountCostuner() {
       {/* Account Information */}
       <div>
         <HeaderLine text='Account information' />
-        <div className='flex justify-between flex-col md:flex-row items-center gap-10'>
+        <div className='flex justify-between flex-col md:flex-row items-center md:gap-10 gap-5'>
           <div className='text-left py-5'>
             <h3 className='font-semibold mb-3'>Conctact Information</h3>
             <p>{data[0].name}</p>
@@ -58,9 +58,9 @@ export default async function AccountCostuner() {
       </div>
       {/*  */}
       <div>
-        <HeaderLine text='Address Book' />
-        <div className='flex justify-between items-start flex-col md:flex-row gap-10'>
-          <div className='text-left py-5'>
+        <HeaderLine text='Address Book'><Link href='/account/costumer/address' className='underline hover:text-gray-600 transition-colors duration-200'>Manage adress</Link></HeaderLine>
+        <div className='flex justify-between items-start flex-col md:flex-row md:gap-10 gap-5 py-5 md:py-0'>
+          <div className='text-left md:py-5 py-2'>
             <h3 className='font-semibold mb-3'>Default Shipping Address</h3>
             {data[0].address.length === 0
               ? (
@@ -83,7 +83,7 @@ export default async function AccountCostuner() {
                 </>
               )}
           </div>
-          <div className='text-left py-5'>
+          <div className='text-left md:py-5 py-2'>
             <h3 className='font-semibold mb-3'>Other Shipping Address</h3>
             {data[0].address.length === 0
               ? (

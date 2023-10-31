@@ -69,13 +69,13 @@ export default function AccountEmailList() {
           <HeaderLine text='Future Deals' />
           <label htmlFor='default' className='flex flex-row-reverse w-full gap-3 justify-end items-center my-3'>Sign up for Everlast Email to receive alerts for Future Deals and holidays disccounts
             <input type='checkbox'
-              className='appearance-none w-4 h-4 border-2 border-border rounded-sm bg-white checked:bg-black checked:border-0'
+              className='appearance-none w-4 h-4 border-2 border-border rounded-sm bg-white checked:bg-black checked:border-0 shrink-0'
               {...register('future_deals_signup')} />
           </label>
           <HeaderLine text='New Products' />
           <label htmlFor='default' className='flex flex-row-reverse w-full gap-3 justify-end items-center my-3'>Sign up for Everlast Email to receive alerts when new Products and Collections are added to the Catalog
             <input type='checkbox'
-              className='appearance-none w-4 h-4 border-2 border-border rounded-sm bg-white checked:bg-black checked:border-0'
+              className='appearance-none w-4 h-4 border-2 border-border rounded-sm bg-white checked:bg-black checked:border-0 shrink-0'
               {...register('new_products_alerts_signup')} />
           </label>
           <button className='bg-black px-10 py-2 mt-5 text-white inline w-fit hover:bg-white hover:text-black transition-colors duration-200 group-disabled:pointer-events-none'>

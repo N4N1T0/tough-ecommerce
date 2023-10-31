@@ -7,13 +7,12 @@ export default async function WhishlistPage() {
   const supabse = createServerComponentClient<Database>({ cookies })
   const { data, error } = await supabse.from('wishlist').select('*, products(*)')
 
-  console.log(data)
-
   if (error !== null) {
     return (
       <h1>{error.message}</h1>
     )
   }
+
   return (
     <section className='space-y-10'>
       <div className='flex justify-between items-center'>
@@ -22,7 +21,7 @@ export default async function WhishlistPage() {
       </div>
       <hr className='border-0 h-[1px] bg-border w-full' />
       {data.length === 0 && <div className='w-full bg-border text-white p-5'><p>You dont have any itmes in the Wishlist</p></div>}
-      <div className='w-full'>
+      <div className='w-full gap-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
         {data.map((item) => (
           <WishListCard key={item.id} item={item} />
         ))}

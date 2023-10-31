@@ -49,7 +49,7 @@ const NavSheet = async () => {
                           <Link href='/account/costumer' className='uppercase text-left'>Account</Link>
                         </SheetClose>
                         <SheetClose asChild>
-                          <Link href='/account/whlist' className='uppercase text-left'>Whishlist</Link>
+                          <Link href='/account/wish-list' className='uppercase text-left'>Whishlist</Link>
                         </SheetClose>
                         <LogoutBtn className='uppercase text-left font-bold border-b-2' />
                       </div>

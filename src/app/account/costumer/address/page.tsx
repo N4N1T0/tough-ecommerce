@@ -94,7 +94,7 @@ export default function AddressPage() {
   return (
     <section>
       <h1 className='uppercase font-bold text-xl'>Address Book</h1>
-      <div className='flex justify-center items-start gap-10 py-5'>
+      <div className='flex justify-center items-start gap-10 flex-col md:flex-row py-5'>
         <div className='flex-1'>
           <HeaderLine text='Address List' />
           <ul className='space-y-5 py-5'>
