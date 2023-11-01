@@ -445,3 +445,45 @@ export const productsLinks = [
     ]
   }
 ]
+
+export const footerLink = [
+  {
+    label: 'about us',
+    links: [
+      {
+        label: 'About Tough',
+        link: '/about'
+      },
+      {
+        label: 'Contact Us',
+        link: '/contact'
+      }
+    ]
+  },
+  {
+    label: 'Costumer Services',
+    links: [
+      {
+        label: 'Shipping Information',
+        link: '/shipping'
+      },
+      {
+        label: 'Size Chart',
+        link: '/size-chart'
+      }
+    ]
+  },
+  {
+    label: 'Comapny',
+    links: [
+      {
+        label: 'Return & Exchanges',
+        link: '/returns'
+      },
+      {
+        label: 'Disclaimer',
+        link: '/discalimer'
+      }
+    ]
+  }
+]
