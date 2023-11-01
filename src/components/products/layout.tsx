@@ -10,7 +10,7 @@ import HeaderLine from '../account/header-line'
 
 export default async function ProductsLayout({ children, category, subCategory }: { children: React.ReactNode, category?: string, subCategory?: string }) {
   return (
-    <main className='max-w-[1400px] px-5 mx-auto grid grid-cols-1 md:grid-cols-5 pt-48 gap-10'>
+    <main className='max-w-[1400px] px-5 mx-auto grid grid-cols-2 md:grid-cols-5 pt-48 gap-10'>
       <aside className='col-span-1 hidden md:block'>
         <div className='sticky top-48'>
           <HeaderLine text='Category' />

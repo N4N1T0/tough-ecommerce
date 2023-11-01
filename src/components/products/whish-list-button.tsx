@@ -1,8 +1,9 @@
 'use client'
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { User } from 'lucide-react'
+import LoginSignTabs from '../layout/login-singup-tabs'
 
 interface Props {
   userId: string | undefined
@@ -16,18 +17,8 @@ interface Props {
 }
 
 const WhishListButton = ({ userId, productId, wishlist }: Props) => {
-  const [user, setUser] = useState<string | undefined>(undefined)
   const supabse = createClientComponentClient<Database>()
   const router = useRouter()
-
-  useEffect(() => {
-    const getUserId = async () => {
-      const { data: { user } } = await supabse.auth.getUser()
-      setUser(user?.id)
-    }
-
-    getUserId()
-  }, [])
 
   const insertItemInWishList = async (userId: string | undefined, productId: number) => {
     if ((wishlist?.some(item => item.product_id === productId)) ?? false) {
@@ -39,8 +30,12 @@ const WhishListButton = ({ userId, productId, wishlist }: Props) => {
     router.refresh()
   }
 
-  if (user === null) {
-    <div>Login First</div>
+  if (userId === undefined) {
+    return (
+      <LoginSignTabs tab='login'>
+        <User className='hover:text-gray-600 transition-colors duration-200' />
+      </LoginSignTabs>
+    )
   }
 
   return (
