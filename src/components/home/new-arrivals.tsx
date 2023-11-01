@@ -12,7 +12,7 @@ const NewArrivals = async () => {
   }
 
   return (
-    <section className='p-10 flex justify-between items-center flex-col w-full'>
+    <section className='p-5 md:p-10 flex justify-between items-center flex-col w-full'>
       <h3 className='uppercase font-bold text-2xl'>New Arrivals</h3>
       <div className='flex flex-col sm:flex-row gap-5 w-full md:w-4/5 justify-between p-5'>
         {data.slice(0, 4).map((item) => (
