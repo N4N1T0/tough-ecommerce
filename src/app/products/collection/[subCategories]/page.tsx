@@ -10,22 +10,30 @@ import WhishListButton from '@/components/products/whish-list-button'
 // Supabse Imports
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 
-export default async function SalePage({ params }: { params: { subCategories: string } }) {
+export default async function CollectionPage({ params }: { params: { subCategories: string } }) {
   // Supabse CLient
   const supabase = createServerComponentClient<Database>({ cookies })
 
   // User for the id
   const { data: { user } } = await supabase.auth.getUser()
 
+  // initializing the products array
+  let products: Array<Database['public']['Tables']['products']['Row']> = []
+
   // fetching the Whislist
   const { data: wishListData } = await supabase.from('wishlist').select()
 
-  // fetching products
-  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-  const { data: products } = await supabase.from('products').select('*, wishlist(*)').gt('sale', 0)
+  // Conditionally fetching the products acording to the subCategory
+  if (params.subCategories === 'all') {
+    const { data } = await supabase.from('products').select('*').neq('collection', '')
+    products = data as Array<Database['public']['Tables']['products']['Row']>
+  } else {
+    const { data } = await supabase.from('products').select().eq('collection', params.subCategories)
+    products = data as Array<Database['public']['Tables']['products']['Row']>
+  }
 
   return (
-    <ProductsLayout subCategory={params.subCategories} category='sale'>
+    <ProductsLayout subCategory={params.subCategories.toLowerCase()} category='collection'>
       <section className=''>
         <h1 className='uppercase font-semibold text-2xl'>{params.subCategories === 'all' ? 'All Products' : params.subCategories}  <span className='text-sm font-normal lowercase'>({products?.length} Products)</span></h1>
         <div className='w-full grid grid-cols-1 md:grid-cols-3 grid-rows-1 gap-5 py-5'>

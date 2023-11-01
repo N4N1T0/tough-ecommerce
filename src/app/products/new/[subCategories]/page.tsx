@@ -10,7 +10,7 @@ import WhishListButton from '@/components/products/whish-list-button'
 // Supabse Imports
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 
-export default async function BoxingPage({ params }: { params: { subCategories: string } }) {
+export default async function NewPage({ params }: { params: { subCategories: string } }) {
   // Supabse CLient
   const supabase = createServerComponentClient<Database>({ cookies })
 

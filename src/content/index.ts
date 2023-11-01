@@ -369,6 +369,27 @@ export const productsLinks = [
     ]
   },
   {
+    label: 'Collection',
+    internalLinks: [
+      {
+        label: 'All Products',
+        link: '/products/collection/all'
+      },
+      {
+        label: 'Titan',
+        link: '/products/collection/Titan'
+      },
+      {
+        label: 'Powerlock',
+        link: '/products/collection/Powerlock'
+      },
+      {
+        label: 'Elite',
+        link: '/products/collection/Elite'
+      }
+    ]
+  },
+  {
     label: 'Fitness',
     internalLinks: [
       {
