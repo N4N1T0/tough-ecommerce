@@ -41,3 +41,34 @@ export const discounts = () => {
 
   return randomDiscount
 }
+
+export const getDeliverDays = () => {
+  // Obten la fecha de hoy
+  const hoy = new Date()
+
+  // Suma una semana (7 días) a la fecha de hoy
+  const fechaDentroDeUnaSemana = new Date(hoy)
+  fechaDentroDeUnaSemana.setDate(hoy.getDate() + 7)
+
+  // Formatea las fechas como strings (puedes ajustar el formato según tus necesidades)
+  const fechaHoy = hoy.toDateString()
+  const fechaEnUnaSemana = fechaDentroDeUnaSemana.toDateString()
+
+  return (`${fechaHoy} - ${fechaEnUnaSemana}`)
+}
+
+export const getSizeOfProducts = (products: string) => {
+  switch (products) {
+    case 'gloves':
+      return ['S/M', 'M/L', 'L/XL']
+    case 'shoes':
+      return ['6', '7', '8', '9', '10', '11', '12']
+    default:
+      return []
+  }
+}
+
+export const encodeProductDate = (fecha: string) => {
+  const d = new Date(fecha)
+  return d.toDateString()
+}
