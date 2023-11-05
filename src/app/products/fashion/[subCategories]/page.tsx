@@ -46,9 +46,11 @@ export default async function FashionPage({ params }: { params: { subCategories:
             const score = item.reviews.map(item => item.score).reduce((acc, current) => acc + current, 0)
             return (
               <div key={item.id} className='border p-2 col-span-1 border-border space-y-2'>
-                <Image src={item.image} alt={item.name} width={350} height={400} />
+                <Link href={`/products/item/${item.id}`}>
+                  <Image src={item.image} alt={item.name} width={350} height={400} />
+                </Link>
                 <div className='flex flex-col md:flex-row justify-between items-start md:items-center gap-3'>
-                  <h2 className='font-semibold text-sm md:text-base'>{item.name}</h2>
+                  <Link href={`/products/item/${item.id}`} className='font-semibold text-sm md:text-base hover:text-gray-700 hover:underline transition-all duration-100'>{item.name}</Link>
                   <div>
                     <RatingClient score={score} size={15} />
                   </div>

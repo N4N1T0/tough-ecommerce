@@ -45,13 +45,15 @@ export default async function MMAPage({ params }: { params: { subCategories: str
           <CategoriesMobileSheet category='mma' subCategory={params.subCategories} />
         </div>
         <div className='w-full grid grid-cols-2 md:grid-cols-3 grid-rows-1 gap-5 py-5'>
-          {products?.map((item, idx) => {
+          {products?.map((item) => {
             const score = item.reviews.map(item => item.score).reduce((acc, current) => acc + current, 0)
             return (
               <div key={item.id} className='border p-2 col-span-1 border-border space-y-2'>
-                <Image src={item.image} alt={item.name} width={350} height={400} />
+                <Link href={`/products/item/${item.id}`}>
+                  <Image src={item.image} alt={item.name} width={350} height={400} />
+                </Link>
                 <div className='flex flex-col md:flex-row justify-between items-start md:items-center gap-3'>
-                  <h2 className='font-semibold text-sm md:text-base'>{item.name}</h2>
+                  <Link href={`/products/item/${item.id}`} className='font-semibold text-sm md:text-base hover:text-gray-700 hover:underline transition-all duration-100'>{item.name}</Link>
                   <div>
                     <RatingClient score={score} size={15} />
                   </div>
