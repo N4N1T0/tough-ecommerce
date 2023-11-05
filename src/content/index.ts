@@ -452,11 +452,11 @@ export const footerLink = [
     links: [
       {
         label: 'About Tough',
-        link: '/about'
+        link: '/info/about-us'
       },
       {
         label: 'Contact Us',
-        link: '/contact'
+        link: '/info/contact'
       }
     ]
   },
@@ -465,11 +465,11 @@ export const footerLink = [
     links: [
       {
         label: 'Shipping Information',
-        link: '/shipping'
+        link: '/info/shipping'
       },
       {
         label: 'Size Chart',
-        link: '/size-chart'
+        link: '/info/size-chart'
       }
     ]
   },
@@ -478,11 +478,11 @@ export const footerLink = [
     links: [
       {
         label: 'Return & Exchanges',
-        link: '/returns'
+        link: '/info/returns'
       },
       {
         label: 'Disclaimer',
-        link: '/discalimer'
+        link: '/info/discalimer'
       }
     ]
   }
