@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { getDeliverDays, getSizeOfProducts } from '@/lib/utils'
 import ItemsBtn from './items-btn'
+import RatingClient from '../shared/rating-client'
 
 interface Props {
   itemInfo: {
@@ -17,26 +18,21 @@ interface Props {
     sports: string[] | null
   }
   children: React.ReactNode
+  score: number
 }
 
-function ItemLayout({ children, itemInfo }: Props) {
+function ItemLayout({ children, itemInfo, score }: Props) {
   const sizes = getSizeOfProducts(itemInfo.equipment_type)
 
   return (
     <section className='max-w-[1400px] px-5 mx-auto grid grid-cols-2 md:grid-cols-5 pt-48 gap-10'>
-      <article className='col-span-3'>
+      <article className='md:col-span-3 col-span-2'>
         {children}
       </article>
-      <aside className='col-span-2 hidden md:block pt-10 space-y-3'>
+      <aside className='col-span-2 pt-10 space-y-3'>
         <div className='space-y-3'>
           <h2 className='uppercase font-bold text-xl'>{itemInfo?.name}</h2>
-          <div>
-            {[...Array(5)].map((star, staridx) => {
-              return (
-                <span key={`Rating-${itemInfo.name}-${staridx}`} className='text-gray-400 text-2xl'>&#9733;</span>
-              )
-            })}
-          </div>
+          <RatingClient score={score} size={15} />
           <div className='flex justify-between items-center'>
             {itemInfo.sale !== null ? <div className='text-xl'><span className='line-through text-gray-400'>{itemInfo.price}</span>${itemInfo.sale}</div> : <div className='text-xl'>{itemInfo.price}</div>}
             {itemInfo.new && <Link href='/products/new' className='uppercase px-2 py-1 bg-gray-400 w-fit hover:bg-white transition-colors duration-200'>New</Link>}

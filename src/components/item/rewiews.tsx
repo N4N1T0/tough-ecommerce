@@ -18,16 +18,16 @@ const Reviews = ({ review, productId }: Props) => {
   const score = review.map((item) => item.score).reduce((acc, current) => acc + current, 0)
 
   return (
-    <section className='max-w-[1400px] px-5 mx-auto'>
+    <section className='max-w-[1400px] px-5 mx-auto pt-5 md:pt-0'>
       <p className='text-lg'>Products Review</p>
       <hr className='w-full border-0 bg-border h-[1px]' />
-      <div className='flex items-start justify-center p-10'>
+      <div className='flex flex-col md:flex-row md:items-start items-center justify-center p-5 md:p-10 gap-5 md:gap-0'>
         <div className='flex justify-center items-center flex-col gap-3 flex-1'>
           <p className='text-6xl font-medium'>{score}/5</p>
           <RatingClient score={score} size={50} />
           <p>{review.length} Reviews</p>
         </div>
-        <div className='flex-1'>
+        <div className='flex-1 w-full'>
           <ReviewForm productId={productId} />
         </div>
         <div className='flex-1 px-5'>

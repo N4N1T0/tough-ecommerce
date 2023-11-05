@@ -36,7 +36,7 @@ const CompleteSet = ({ collection, itemName }: { collection: string | null, item
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <div className='uppercase px-4 py-1 bg-gray-400 w-fit hover:bg-white transition-colors duration-200 cursor-pointer'>Complete the Set</div>
+        <div className='uppercase px-2 md:px-4 py-1 text-sm md:text-base text-center bg-gray-400 w-fit hover:bg-white transition-colors duration-200 cursor-pointer'>Complete the Set</div>
       </SheetTrigger>
       <SheetContent className='py-14'>
         <SheetHeader className='bg-gray-200 p-5'>
