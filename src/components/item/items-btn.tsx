@@ -1,11 +1,24 @@
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import AddToCartBtn from '../products/add-to-cart-btn'
 import CompleteSet from './complete-set'
+import { cookies } from 'next/headers'
+import WhishListButton from '../products/whish-list-button'
 
-const ItemsBtn = ({ collection, itemName }: { collection: string | null, itemName: string }) => {
+interface ItemsBtnProps {
+  itemInfo: productsPropsWithReviewsNoArray
+  collection: string | null
+}
+
+const ItemsBtn = async ({ collection, itemInfo }: ItemsBtnProps) => {
+  const supabase = createServerComponentClient<Database>({ cookies })
+  const { data: { user } } = await supabase.auth.getUser()
+  const { data: wishListData } = await supabase.from('wishlist').select()
+
   return (
     <div className='py-3 flex flex-row justify-between items-center gap-2'>
-      <button className='bg-black text-white px-2 md:px-4 py-1 text-sm md:text-base uppercase hover:bg-white hover:text-black transition-colors duration-200'>Add to cart</button>
-      <button className='bg-black text-white px-2 md:px-4 py-1 text-sm md:text-base uppercase hover:bg-white hover:text-black transition-colors duration-200'>Add to WishList</button>
-      <CompleteSet collection={collection} itemName={itemName} />
+      <AddToCartBtn product={itemInfo} />
+      <WhishListButton userId={user?.id} productId={itemInfo.id} wishlist={wishListData} />
+      <CompleteSet collection={collection} itemName={itemInfo.name} />
     </div>
   )
 }

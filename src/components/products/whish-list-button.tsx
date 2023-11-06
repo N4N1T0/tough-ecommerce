@@ -14,9 +14,10 @@ interface Props {
     product_id: number
     user_id: string | null
   }> | null
+  heart?: boolean
 }
 
-const WhishListButton = ({ userId, productId, wishlist }: Props) => {
+const WhishListButton = ({ userId, productId, wishlist, heart = false }: Props) => {
   const supabse = createClientComponentClient<Database>()
   const router = useRouter()
 
@@ -38,16 +39,24 @@ const WhishListButton = ({ userId, productId, wishlist }: Props) => {
     )
   }
 
-  return (
-    <button
-      onClick={async () => {
+  if (heart) {
+    return (
+      <button
+        onClick={async () => {
+          await insertItemInWishList(userId, productId)
+        }}
+        className={((wishlist?.some(item => item.product_id === productId)) ?? false) ? 'text-red-700' : 'text-gray-800'}
+      >
+        &#10084;
+      </button>
+    )
+  } else {
+    return (
+      <button onClick={async () => {
         await insertItemInWishList(userId, productId)
-      }}
-      className={((wishlist?.some(item => item.product_id === productId)) ?? false) ? 'text-red-700' : 'text-gray-800'}
-    >
-      &#10084;
-    </button>
-  )
+      }} className='bg-black text-white uppercase px-3 py-1 md:px-4 md:text-base hover:bg-white hover:text-black transition-colors duration-200 font-bold text-sm'>add to Wishlist</button>
+    )
+  }
 }
 
 export default WhishListButton

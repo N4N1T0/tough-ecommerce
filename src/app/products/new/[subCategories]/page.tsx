@@ -8,6 +8,7 @@ import ProductsLayout from '@/components/products/layout'
 import WhishListButton from '@/components/products/whish-list-button'
 import RatingClient from '@/components/shared/rating-client'
 import CategoriesMobileSheet from '@/components/products/categories-mobile-sheet'
+import AddToCartBtn from '@/components/products/add-to-cart-btn'
 
 // Supabse Imports
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
@@ -53,8 +54,8 @@ export default async function NewPage({ params }: { params: { subCategories: str
                 </div>
                 <hr className='bg-border/60 h-[1px] border-0' />
                 <div className='flex justify-between items-center'>
-                  <button className='bg-black text-white uppercase px-3 py-1 hover:bg-white hover:text-black transition-colors duration-200 font-bold text-sm'>add to cart</button>
-                  <WhishListButton userId={user?.id} productId={item.id} wishlist={wishListData} />
+                  <AddToCartBtn product={item} />
+                  <WhishListButton userId={user?.id} productId={item.id} wishlist={wishListData} heart />
                 </div>
               </div>
             )

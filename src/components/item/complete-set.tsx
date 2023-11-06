@@ -1,5 +1,3 @@
-'use client'
-
 import {
   Sheet,
   SheetContent,
@@ -9,29 +7,29 @@ import {
   SheetTrigger,
   SheetFooter
 } from '@/components/ui/sheet'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import AddToCartBtn from '../products/add-to-cart-btn'
+import WhishListButton from '../products/whish-list-button'
 
-const CompleteSet = ({ collection, itemName }: { collection: string | null, itemName: string }) => {
-  const [products, setProducts] = useState<Array<Database['public']['Tables']['products']['Row']> | null>([])
-  const supabase = createClientComponentClient<Database>()
+const CompleteSet = async ({ collection, itemName }: { collection: string | null, itemName: string }) => {
+  const supabase = createServerComponentClient<Database>({ cookies })
 
-  useEffect(() => {
-    const getProductsByCollection = async () => {
-      if (collection !== null) {
-        const { data } = await supabase.from('products').select().eq('collection', collection).neq('name', itemName)
-        setProducts(data)
-      }
-    }
-
-    getProductsByCollection()
-  }, [])
-
+  // return null if there is no collection
   if (collection === null) {
     return <></>
   }
+
+  // Fecthcing Products according to the collection
+  const { data: products } = await supabase.from('products').select('*, reviews(*)').eq('collection', collection)
+
+  // User for the id
+  const { data: { user } } = await supabase.auth.getUser()
+
+  // fetching the Whislist
+  const { data: wishListData } = await supabase.from('wishlist').select()
 
   return (
     <Sheet>
@@ -54,8 +52,8 @@ const CompleteSet = ({ collection, itemName }: { collection: string | null, item
               </div>
               <Image src={item.image} alt={item.name} width={150} height={150} />
               <div className='py-3 flex flex-row justify-between items-center'>
-                <button className='bg-black text-white px-4 text-sm py-1 uppercase hover:bg-white hover:text-black transition-colors duration-200'>Add to cart</button>
-                <button className='bg-black text-white px-4 text-sm py-1 uppercase hover:bg-white hover:text-black transition-colors duration-200'>Add to WishList</button>
+                <AddToCartBtn product={item} />
+                <WhishListButton userId={user?.id} productId={item.id} wishlist={wishListData} />
               </div>
             </div>
           ))}

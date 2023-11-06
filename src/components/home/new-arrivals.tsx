@@ -12,16 +12,16 @@ import RatingClient from '../shared/rating-client'
 const NewArrivals = async ({ title, sport }: { title: string, sport?: string | undefined }) => {
   const supabase = createServerComponentClient<Database>({ cookies })
   // initializing the products array
-  let products: productsPropsWitReviews = []
+  let products: productsPropsWithReviews = []
 
   if (sport === undefined) {
     const { data } = await supabase.from('products').select('*, reviews(*)').eq('new', true)
-    products = data as productsPropsWitReviews
+    products = data as productsPropsWithReviews
   }
 
   if (typeof sport === 'string') {
     const { data } = await supabase.from('products').select('*, reviews(*)').contains('sports', [sport])
-    products = data as productsPropsWitReviews
+    products = data as productsPropsWithReviews
   }
 
   return (

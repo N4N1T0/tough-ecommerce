@@ -4,19 +4,7 @@ import ItemsBtn from './items-btn'
 import RatingClient from '../shared/rating-client'
 
 interface Props {
-  itemInfo: {
-    collection: string | null
-    created_at: string
-    description: string
-    equipment_type: string
-    id: number
-    image: string
-    name: string
-    new: boolean
-    price: number
-    sale: number | null
-    sports: string[] | null
-  }
+  itemInfo: productsPropsWithReviewsNoArray
   children: React.ReactNode
   score: number
 }
@@ -59,7 +47,7 @@ function ItemLayout({ children, itemInfo, score }: Props) {
           <small>{itemInfo.description}</small>
           <hr className='w-full border-0 bg-border h-[1px]' />
         </div>
-        <ItemsBtn collection={itemInfo.collection} itemName={itemInfo.name} />
+        <ItemsBtn collection={itemInfo.collection} itemInfo={itemInfo} />
       </aside>
     </section>
   )
