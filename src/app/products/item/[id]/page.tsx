@@ -1,4 +1,5 @@
 import NewArrivals from '@/components/home/new-arrivals'
+import AddToRecentlyViewed from '@/components/item/add-to-recently-viewed'
 import ItemLayout from '@/components/item/layout'
 import Reviews from '@/components/item/rewiews'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
@@ -22,6 +23,7 @@ export default async function ItemPage({ params }: { params: { id: string } }) {
       </ItemLayout>
       <Reviews review={data[0].reviews} productId={data[0].id} />
       <NewArrivals title='You may also like' sport={data[0].sports[0]} />
+      <AddToRecentlyViewed product={data[0]} />
     </main>
   )
 }

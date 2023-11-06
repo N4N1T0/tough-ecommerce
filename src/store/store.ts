@@ -2,14 +2,17 @@ import { create } from 'zustand'
 
 interface ToughState {
   cart: productsPropsWithReviews | productsPropsWithoutReviews
+  recentlyViewed: productsPropsWithReviews
   addToCart: (params: productsPropsWithReviewsNoArray | productsPropsWithoutReviewsNoArray) => void
   removeFromCart: (params: productsPropsWithReviewsNoArray | productsPropsWithoutReviewsNoArray) => void
   emptyCart: () => void
   addAllToCart: (params: any) => void
+  addToRecentlyViewed: (params: productsPropsWithReviewsNoArray) => void
 }
 
 const useStore = create<ToughState>((set) => ({
   cart: [],
+  recentlyViewed: [],
   addToCart: (params) => {
     const newProduct = params
     set((state) => {
@@ -44,6 +47,22 @@ const useStore = create<ToughState>((set) => ({
       return {
         ...state,
         cart: newCart
+      }
+    })
+  },
+  addToRecentlyViewed: (params) => {
+    const newProduct = params
+     set((state) => {
+      if (state.recentlyViewed.some((item) => item.id === newProduct.id)) {
+        return {
+          ...state
+        }
+      } else {
+        const newRecentlyViewed = [newProduct, ...state.recentlyViewed]
+        return {
+          ...state,
+          recentlyViewed: newRecentlyViewed
+        }
       }
     })
   }

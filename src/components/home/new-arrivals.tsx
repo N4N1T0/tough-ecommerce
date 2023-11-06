@@ -31,7 +31,7 @@ const NewArrivals = async ({ title, sport }: { title: string, sport?: string | u
         {products.slice(0, 4).map((item) => {
           const score = item.reviews.map((item) => item.score).reduce((acc, current) => acc + current, 0)
           return (
-            <Link href={`products/item/${item.id}`} className='col-span-1 space-y-2 gap-5' key={item.id}>
+            <Link href={`/products/item/${item.id}`} className='col-span-1 space-y-2 gap-5' key={item.id}>
               <Image src={item.image} alt={item.name} width={250} height={250} />
               <p className='font-semibold uppercase text-sm'>{item.name}</p>
               <p>{item.price}</p>
