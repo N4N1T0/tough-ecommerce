@@ -482,7 +482,7 @@ export const footerLink = [
       },
       {
         label: 'Disclaimer',
-        link: '/info/discalimer'
+        link: '/info/disclaimer'
       }
     ]
   }

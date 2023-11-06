@@ -31,7 +31,7 @@ export default function ShippingPage() {
           <li>Next Day Air is available for all 50 states and Puerto Rico, with some limitations in Alaska and Hawaii. Delivery is guaranteed on the next business day at the following times depending on destination: 10:30am, 12pm, or end of day (not time zone-specific).</li>
           <li>2nd Day Air is available for all 50 states and Puerto Rico, with some limitations in Alaska and Hawaii.</li>
         </ul>
-        <strong>Need assistance? <Link href='/info/contact-us' >Contact us</Link></strong>
+        <strong>Need assistance? <Link href='/info/contact-us' className='underline hover:text-gray-800 transition-colors duration-200'>Contact us</Link></strong>
       </section>
     </main>
   )

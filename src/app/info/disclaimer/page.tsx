@@ -1,0 +1,26 @@
+export default function DisclaimerPage() {
+  return (
+    <main className='max-w-[1000px] mx-auto px-5 flex flex-col justify-center items-center text-center gap-10 leading-10'>
+      <header className='pt-48 py-10'>
+        <h1 className='font-bold uppercase text-5xl xl:text-8xl'>DISCLAIMER</h1>
+      </header>
+      <section className='space-y-5' id='shipping-info'>
+        <p className='text-left'>THE FOLLOWING TERMS AND CONDITIONS APPLY TO ALL SALES AND USES. PLEASE REVIEW CAREFULLY. THESE TERMS AND CONDITIONS INCLUDE LIMITED WARRANTIES, AND DISCLAIMERS OF LIABILITY AND ARBITRATION PROVISIONS. KEEPING, USING, OR ALLOWING USE OF THIS PRODUCT INDICATES YOUR AGREEMENT TO THESE TERMS. IF YOU DO NOT WISH TO AGREE TO THESE TERMS, YOU HAVE 14 DAYS FROM DATE OF PURCHASE TO RETURN THE UNUSED PRODUCT.</p>
+        <h2 className='font-bold text-lg'>DEFINITION</h2>
+        <p className='text-left'>&quot;Tough&quot; as used herein means Everlast Worldwide, Inc. and any and all of its affiliates and/or subsidiaries and/or business agents, servants and employees.</p>
+        <h2 className='font-bold text-lg'>HIGH RISK ACTIVITY</h2>
+        <p className='text-left'>Products sold by Tought include equipment and gear used in boxing, martial arts, mixed martial arts, yoga, fitness, weight training, kick-boxing, and demonstration. Participation in any of these activities is a high-risk sports activity. You participate in any of these activities at your own risk. You agree to consult with your personal physician before participating in any of these high-risk activities. Read, understand, and follow specific warnings and instructions on products and in product literature or inserts before using the product. Save these documents for reference.</p>
+        <h2 className='font-bold text-lg'>ASSUMPTION OF THE RISK</h2>
+        <p className='text-left'>By buying, using, providing, or allowing the use of Tough&apos;s products, you understand and agree that boxing, martial arts, mixed martial arts, yoga, fitness, weight training, kick-boxing, and demonstration are high risk activities and, to the extent permitted by law, YOU EXPRESSLY AND VOLUNTARILY ASSUME THE RISK OF DEATH OR OTHER PERSONAL INJURY SUSTAINED WHILE PARTICIPATING IN SUCH ACTIVITIES WHETHER OR NOT CAUSED BY THE NEGLIGENCE OR OTHER FAULT of Everlast including but not limited to equipment malfunction from whatever cause, or any other fault of Everlast. Additionally, you agree to indemnify, defend and hold Everlast harmless from any third party claims arising from such High Risk Activities or any other Everlast product.</p>
+        <h2 className='font-bold text-lg'>DUTY OF COACHES, TRAINERS, GYMS TO INFORM OTHERS OF THESE TERMS AND CONDITIONS</h2>
+        <p className='text-left'>Before you allow others to use a Everlast product you agree that (a) you will require that they (or their legal guardian if they are minors) read, understand, and agree to these Terms and Conditions of Sale or Use, (b) you believe they (or their guardian) understand that they are participating in a high-risk activity and assume the risk of death or other personal injury, and (c) you agree to indemnify, defend, and hold Everlast harmless from any claims made by them arising from their use of Everlast products.</p>
+        <h2 className='font-bold text-lg'>WARRANTY DISCLAIMER</h2>
+        <p className='text-left'>Everlast warrants its products to be free from defects in materials and workmanship for a period of 120 days from date of purchase, provided they have not been subjected to obvious abuse, neglect or misuse. Tough&apos;s sole liability is limited to repairing or replacing products that are returned within this 120-day period, unless specific product literature specifies otherwise.</p>
+        <h2 className='font-bold text-lg'>LIMITATION OF LIABILITY</h2>
+        <p className='text-left'>As set forth above under the limited warranty provisions, Tough&apos;s liability is limited to repair or replacement of its products which are returned to it prepaid in the specified period of time. In no event shall Tough&apos;s liability exceed the value of the products sold. Everlast shall not be liable for any special or consequential damages that result from the use of any product sold through its websites, catalogs, or otherwise, including but not limited to its retail showroom or tournaments. Applicable law may not allow the limitation or exclusion of liability of special or consequential damages so the above limitation or exclusion may not apply to your purchase, but it is intended to be the maximum limitation as permitted by law.</p>
+        <h2 className='font-bold text-lg'>WARNING</h2>
+        <p className='text-left'>Use and misuse of products sold through Tough&apos;s websites, catalogs, or otherwise, including but not limited to its retail showroom or tournaments, involves serious risks including injury, disability and death. Purchasers, users and participants assume all risk of injury. Everlast cannot and will not be responsible for the misuse or unauthorized and improper use of products sold through Tough&apos;s websites, catalogs, or otherwise, including but not limited to its retail showroom or tournaments.</p>
+      </section>
+    </main>
+  )
+}
