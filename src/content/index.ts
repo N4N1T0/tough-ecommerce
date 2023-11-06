@@ -456,7 +456,7 @@ export const footerLink = [
       },
       {
         label: 'Contact Us',
-        link: '/info/contact'
+        link: '/info/contact-us'
       }
     ]
   },
