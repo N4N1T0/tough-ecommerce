@@ -13,9 +13,11 @@ import {
 import useStore from '@/store/store'
 import Image from 'next/image'
 import RemoveFromCart from '../products/remove-from-cart'
+import { checkout } from '@/lib/stripe'
 
 const CartSheet = ({ children }: { children: React.ReactNode }) => {
   const { cart } = useStore()
+  const stripePrice = cart.map((item) => { return { price: item.stripe_id, quantity: 1 } })
 
   return (
     <Sheet>
@@ -43,7 +45,7 @@ const CartSheet = ({ children }: { children: React.ReactNode }) => {
           ? (
             <SheetFooter className='bg-gray-200 p-5 flex w-full justify-between items-center'>
               <div>CART SUBTOTAL: &{cart.map((item) => item.price).reduce((acc, curr) => acc + curr, 0)}</div>
-              <button className='bg-black text-white uppercase px-3 py-1 hover:bg-white hover:text-black transition-colors duration-200 font-bold text-sm'>Checkout</button>
+              <button onClick={async () => { await checkout({ items: stripePrice }) }} className='bg-black text-white uppercase px-3 py-1 hover:bg-white hover:text-black transition-colors duration-200 font-bold text-sm'>Checkout</button>
             </SheetFooter>
           )
           : (
