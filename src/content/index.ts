@@ -1,3 +1,13 @@
+import Arnold from '@/assets/arnold_barboza.jpg'
+import Claressa from '@/assets/claressa_shields.jpg'
+import Dustin from '@/assets/dustin_poirier.jpg'
+import Jared from '@/assets/jared_anderson.jpg'
+import Johnny from '@/assets/johnny_fisher.jpg'
+import Liam from '@/assets/liam_smith.jpg'
+import Natasha from '@/assets/natasha_Jonas.jpg'
+import Nico from '@/assets/nico_ali_walsh.jpg'
+import Ramla from '@/assets/ramla_ali.jpg'
+
 export const navlinks = [
   {
     label: 'BOXING',
@@ -485,5 +495,53 @@ export const footerLink = [
         link: '/info/disclaimer'
       }
     ]
+  }
+]
+
+export const teamTough = [
+  {
+    image: Arnold,
+    name: 'Arnold Barboza',
+    division: 'Super Lightweight'
+  },
+  {
+    image: Claressa,
+    name: 'Claressa Shields',
+    division: 'Lightweight'
+  },
+  {
+    image: Dustin,
+    name: 'Dustin Porier',
+    division: 'Lightweight'
+  },
+  {
+    image: Jared,
+    name: 'Jared Anderson',
+    division: 'Heavytweight'
+  },
+  {
+    image: Johnny,
+    name: 'Johnny Fisher',
+    division: 'Featherweight'
+  },
+  {
+    image: Liam,
+    name: 'Liam Smith',
+    division: 'super Welterweight'
+  },
+  {
+    image: Natasha,
+    name: 'Natasha Jonas',
+    division: 'super Welterweight'
+  },
+  {
+    image: Nico,
+    name: 'Nico Ali Walsh',
+    division: 'Middleweight'
+  },
+  {
+    image: Ramla,
+    name: 'Ramla Ali',
+    division: 'Featherweight'
   }
 ]
