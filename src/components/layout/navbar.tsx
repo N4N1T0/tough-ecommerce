@@ -14,6 +14,7 @@ import NavSheet from './navbar-sheet'
 import UserPopup from './user-popup'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
+import SpanCartNumber from './span-cart-number'
 
 const Navbar = async () => {
   const supabase = createServerComponentClient<Database>({ cookies })
@@ -40,7 +41,10 @@ const Navbar = async () => {
           </UserPopup>
           {/* Cart */}
           <CartSheet>
-            <ShoppingCart className='hover:text-gray-600 transition-colors duration-200' />
+            <div className='relative'>
+              <ShoppingCart className='hover:text-gray-600 transition-colors duration-200' />
+              <SpanCartNumber />
+            </div>
           </CartSheet>
         </div>
       </nav>
