@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { persist, createJSONStorage } from 'zustand/middleware'
 
 interface ToughState {
   cart: productsPropsWithReviews | productsPropsWithoutReviews
@@ -10,7 +11,9 @@ interface ToughState {
   addToRecentlyViewed: (params: productsPropsWithReviewsNoArray) => void
 }
 
-const useStore = create<ToughState>((set) => ({
+const useStore = create(
+  persist<ToughState>(
+  (set) => ({
   cart: [],
   recentlyViewed: [],
   addToCart: (params) => {
@@ -66,6 +69,12 @@ const useStore = create<ToughState>((set) => ({
       }
     })
   }
-}))
+}),
+    {
+      name: 'Tough-Cart',
+      storage: createJSONStorage(() => sessionStorage)
+    }
+)
+)
 
 export default useStore
