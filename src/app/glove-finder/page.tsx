@@ -27,7 +27,7 @@ export default function GloveFinderPage() {
           <video autoPlay muted loop className='w-full h-full hidden md:block'>
             <source src='https://www.everlast.com/media/wysiwyg/glove_finder_video.mp4' type='video/mp4'></source>
           </video>
-          <Image src={GloveFinder} alt='Glove Finder Page Banner' className='block md:hidden pt-28' />
+          <Image placeholder='blur' src={GloveFinder} alt='Glove Finder Page Banner' className='block md:hidden pt-28' />
           <div className='absolute top-1/2 left-1/2 text-white -translate-x-1/2 md:-translate-y-1/2 -translate-y-1/3 text-center space-y-5'>
             <h1 className='text-7xl md:text-9xl font-extrabold'>GLOVE FINDER</h1>
             <h2 className='text-xl md:text-2xl leading-8'>Don’t know where to start? Overwhelmed with options? We got you. Answer a few questions and we’ll get you to the perfect glove.</h2>

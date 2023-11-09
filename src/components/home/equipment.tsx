@@ -9,7 +9,7 @@ const Equipment = () => {
     <section id='collection' className='flex flex-col md:flex-row px-5 py-10 gap-5 items-center justify-between'>
       <div className='space-y-2'>
         <Link href='/products/boxing/pads'>
-          <Image src={Pads} alt='PowerLock Collection picture' width={890} height={708} />
+          <Image placeholder='blur' src={Pads} alt='PowerLock Collection picture' width={890} height={708} />
         </Link>
         <h2 className='font-bold text-2xl uppercase font-kashua pt-1'>Shop Pads and Paddles</h2>
         <hr className='w-full h-[1px] border-none bg-border' />
@@ -20,7 +20,7 @@ const Equipment = () => {
       </div>
       <div className='space-y-2'>
         <Link href='/products/boxing/handwraps'>
-          <Image src={Handwraps} alt='Titan Collection picture' width={890} height={708} />
+          <Image placeholder='blur' src={Handwraps} alt='Titan Collection picture' width={890} height={708} />
         </Link>
         <h2 className='font-bold text-2xl uppercase font-kashua pt-1'>Shop Hand Wraps</h2>
         <hr className='w-full h-[1px] border-none bg-border' />
@@ -31,7 +31,7 @@ const Equipment = () => {
       </div>
       <div className='space-y-2'>
         <Link href='/products/boxing/headgear'>
-          <Image src={Headgear} alt='Titan Collection picture' width={890} height={708} />
+          <Image placeholder='blur' src={Headgear} alt='Titan Collection picture' width={890} height={708} />
         </Link>
         <h2 className='font-bold text-2xl uppercase font-kashua pt-1'>Shop Head Gear</h2>
         <hr className='w-full h-[1px] border-none bg-border' />

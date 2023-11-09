@@ -10,8 +10,8 @@ const Banner = () => {
   return (
     <section className='w-full flex justify-end items-center bg-black' id='banner'>
       <Link href='/'>
-        <Image src={BannerDesktop} alt='App Tough Fitness Banner Desktop version' className='hidden sm:block' />
-        <Image src={BannerMobile} alt='App Tough Fitness Banner Mobile version' className='block sm:hidden' />
+        <Image src={BannerDesktop} placeholder='blur' alt='App Tough Fitness Banner Desktop version' className='hidden sm:block' />
+        <Image src={BannerMobile} placeholder='blur' alt='App Tough Fitness Banner Mobile version' className='block sm:hidden' />
       </Link>
     </section>
   )
