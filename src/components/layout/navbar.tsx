@@ -24,8 +24,8 @@ const Navbar = async () => {
       <nav className='flex justify-between items-center px-8'>
         {/* Mobile Navbar */}
         <NavSheet />
-        <Link href='/'>
-          <h2 className='uppercase font-kashua text-2xl'>Tough</h2>
+        <Link href='/' className='uppercase text-2xl'>
+          Tough
         </Link>
         <ul className='gap-5 hidden md:flex'>
           {navlinks.map((item, idx) => (

@@ -17,7 +17,7 @@ declare global {
   price: number
   sale: number | null
   sports: string[] | null
-  stripe_id: string | null
+  stripe_id: string
   reviews: Array<{
     created_at: string
     id: number
@@ -41,7 +41,7 @@ declare global {
   price: number
   sale: number | null
   sports: string[] | null
-  stripe_id: string | null
+  stripe_id: string
 }>
 }
 
@@ -59,7 +59,7 @@ declare global {
   price: number
   sale: number | null
   sports: string[] | null
-  stripe_id: string | null
+  stripe_id: string
 }
 }
 
@@ -76,7 +76,7 @@ declare global {
   price: number
   sale: number | null
   sports: string[] | null
-  stripe_id: string | null
+  stripe_id: string
   reviews: Array<{
     created_at: string
     id: number
