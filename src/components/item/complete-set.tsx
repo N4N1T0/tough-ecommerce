@@ -50,7 +50,7 @@ const CompleteSet = async ({ collection, itemName }: { collection: string | null
                 <p className='font-bold'>{item.name}</p>
                 <p>${item.price}</p>
               </div>
-              <Image src={item.image} alt={item.name} width={150} height={150} />
+              <Image src={item.image} alt={item.name} width={150} height={150} placeholder='blur' blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mM8+R8AApcByuTu2nIAAAAASUVORK5CYII' />
               <div className='py-3 flex flex-row justify-between items-center'>
                 <AddToCartBtn product={item} />
                 <WhishListButton userId={user?.id} productId={item.id} wishlist={wishListData} />

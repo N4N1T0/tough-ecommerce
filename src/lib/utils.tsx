@@ -34,14 +34,6 @@ export const getHolidays = () => {
   }
 }
 
-export const discounts = () => {
-  const discountsList = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
-  const randomIndex = Math.floor(Math.random() * discountsList.length)
-  const randomDiscount = discountsList[randomIndex]
-
-  return randomDiscount
-}
-
 export const getDeliverDays = () => {
   // Obten la fecha de hoy
   const hoy = new Date()
@@ -63,6 +55,16 @@ export const getSizeOfProducts = (products: string) => {
       return ['S/M', 'M/L', 'L/XL']
     case 'shoes':
       return ['6', '7', '8', '9', '10', '11', '12']
+    case 'headgear':
+      return ['S', 'M', 'L', 'XL']
+    case 'handwraps':
+      return ['150', '180', '200', '220']
+    case 'cups':
+      return ['S', 'M', 'L']
+    case 'men':
+      return ['S', 'M', 'L', 'XL']
+    case 'women':
+      return ['S', 'M', 'L', 'XL']
     default:
       return []
   }

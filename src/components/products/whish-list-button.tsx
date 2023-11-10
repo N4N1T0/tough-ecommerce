@@ -2,8 +2,6 @@
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
-import { User } from 'lucide-react'
-import LoginSignTabs from '../layout/login-singup-tabs'
 
 interface Props {
   userId: string | undefined
@@ -12,7 +10,7 @@ interface Props {
     created_at: string
     id: number
     product_id: number
-    user_id: string | null
+    user_id: string
   }> | null
   heart?: boolean
 }
@@ -21,7 +19,7 @@ const WhishListButton = ({ userId, productId, wishlist, heart = false }: Props) 
   const supabse = createClientComponentClient<Database>()
   const router = useRouter()
 
-  const insertItemInWishList = async (userId: string | undefined, productId: number) => {
+  const insertItemInWishList = async (userId: string, productId: number) => {
     if ((wishlist?.some(item => item.product_id === productId)) ?? false) {
       await supabse.from('wishlist').delete().eq('product_id', productId)
     } else {
@@ -31,19 +29,11 @@ const WhishListButton = ({ userId, productId, wishlist, heart = false }: Props) 
     router.refresh()
   }
 
-  if (userId === undefined) {
-    return (
-      <LoginSignTabs tab='login'>
-        <User className='hover:text-gray-600 transition-colors duration-200' />
-      </LoginSignTabs>
-    )
-  }
-
   if (heart) {
     return (
       <button
         onClick={async () => {
-          await insertItemInWishList(userId, productId)
+          await insertItemInWishList(userId!, productId)
         }}
         className={((wishlist?.some(item => item.product_id === productId)) ?? false) ? 'text-red-700' : 'text-gray-800'}
       >
@@ -53,7 +43,7 @@ const WhishListButton = ({ userId, productId, wishlist, heart = false }: Props) 
   } else {
     return (
       <button onClick={async () => {
-        await insertItemInWishList(userId, productId)
+        await insertItemInWishList(userId!, productId)
       }} className='bg-black text-white uppercase px-3 py-1 md:px-4 md:text-base hover:bg-white hover:text-black transition-colors duration-200 font-bold text-sm'>add to Wishlist</button>
     )
   }

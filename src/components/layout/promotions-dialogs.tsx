@@ -20,7 +20,7 @@ import CodePic from '@/assets/Code-promotion.jpg'
 import { X } from 'lucide-react'
 
 // Utils Imports
-import { getHolidays, endCodeDate, discounts } from '@/lib/utils'
+import { getHolidays, endCodeDate } from '@/lib/utils'
 import Link from 'next/link'
 
 export const PromotionDialog = ({ children }: { children: React.ReactNode }) => {
@@ -53,7 +53,7 @@ export const PromotionDialog = ({ children }: { children: React.ReactNode }) => 
           <X className='h-6 w-6 text-black md:text-white' />
           <span className='sr-only'>Close</span>
         </DialogClose>
-        <Image src={PromoPic} alt='Tough promotion picture' width={350} height={350} className='hidden md:block' />
+        <Image src={PromoPic} alt='Tough promotion picture' width={350} height={350} className='hidden md:block' placeholder='blur' blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mM8+R8AApcByuTu2nIAAAAASUVORK5CYII' />
       </DialogContent>
     </Dialog >
   )
@@ -78,17 +78,17 @@ export const CodeDialog = ({ children }: { children: React.ReactNode }) => {
     <Dialog open={open}>
       <DialogTrigger onClick={() => { setOpen(!open) }}>{children}</DialogTrigger>
       <DialogContent className='md:p-0 p-10 flex max-w-[700px] w-[300px] shadow-xl bg-white'>
-        <Image src={CodePic} alt='Tough promotion picture' width={350} height={350} className='hidden md:block' />
+        <Image src={CodePic} alt='Tough promotion picture' width={350} height={350} className='hidden md:block' placeholder='blur' blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mM8+R8AApcByuTu2nIAAAAASUVORK5CYII' />
         <div className='grid place-content-center text-center p-0 md:px-5 space-y-7'>
           {codeOpen
             ? (
               <>
-                <h3 className='uppercase font-bold text-2xl'>YOU’VE UNLOCKED {discounts()}%  OFF YOUR ENTIRE ORDER!</h3>
+                <h3 className='uppercase font-bold text-2xl'>YOU’VE UNLOCKED 10%  OFF YOUR ENTIRE ORDER!</h3>
                 <input type='text' value='PZ15CN' className='w-full border border-gray-500 text-center py-3 font-bold' readOnly ref={inputRef} />
                 <small>Please use this coupon code when checking out <br />Your code will expire in 60 minutes</small>
                 <div className='w-full flex flex-col gap-2'>
                   <button onClick={copyToClipboard} className='bg-black text-white hover:bg-white hover:text-black transition-colors duration-200 py-2 px-5'>Copy</button>
-                  <Link href='/products' className='bg-black text-white hover:bg-white hover:text-black transition-colors duration-200 py-2 px-5'>Shop Now</Link>
+                  <Link href='/products/boxing/all' className='bg-black text-white hover:bg-white hover:text-black transition-colors duration-200 py-2 px-5'>Shop Now</Link>
                 </div>
               </>
             )

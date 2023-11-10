@@ -5,6 +5,8 @@ import RatingClient from './rating-client'
 import AddToCartBtn from '../products/add-to-cart-btn'
 import WhishListButton from '../products/whish-list-button'
 import { type User } from '@supabase/supabase-js'
+import LoginSignTabs from '../layout/login-singup-tabs'
+import { User as Profile } from 'lucide-react'
 
 interface Props {
   item: productsPropsWithReviewsNoArray
@@ -36,10 +38,22 @@ function ProductsCard({ item, score, user, wishListData }: Props) {
         {item.sale !== null && <Link href='/products/sale' className='uppercase px-2 py-1 bg-gray-400 w-fit hover:bg-white transition-colors duration-200'>Sale</Link>}
       </div>
       <hr className='bg-border/60 h-[1px] border-0' />
-      <div className='flex justify-between items-center'>
-        <AddToCartBtn product={item} />
-        <WhishListButton userId={user?.id} productId={item.id} wishlist={wishListData} heart />
-      </div>
+      {user === null
+        ? (
+          <div className='flex justify-between items-center'>
+            <p className='font-bold text-red-900'>Login First</p>
+            <LoginSignTabs tab='login'>
+              <Profile className='hover:text-gray-600 transition-colors duration-200' />
+            </LoginSignTabs>
+          </div>
+        )
+        : (
+          <div className='flex justify-between items-center'>
+            <AddToCartBtn product={item} />
+            <WhishListButton userId={user?.id} productId={item.id} wishlist={wishListData} heart />
+          </div>
+
+        )}
     </div>
   )
 }

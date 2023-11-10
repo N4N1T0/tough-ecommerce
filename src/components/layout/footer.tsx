@@ -51,7 +51,7 @@ function Footer() {
           </AccordionItem>
         ))}
       </Accordion>
-      <Image src={Badge} alt='Badge' width={100} height={100} />
+      <Image src={Badge} alt='Badge' width={100} height={100} placeholder='blur' blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mM8+R8AApcByuTu2nIAAAAASUVORK5CYII' />
     </footer>
   )
 }

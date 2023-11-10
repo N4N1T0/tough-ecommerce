@@ -53,7 +53,7 @@ const Navbar = async () => {
         {(session != null)
           ? (
             <CodeDialog>
-              <p className='md:px-0 px-5 hover:text-gray-300 transition-colors duration-200'>UNLOCK UP TO 50% OFF YOUR ENTIRE ORDER</p>
+              <p className='md:px-0 px-5 hover:text-gray-300 transition-colors duration-200'>UNLOCK UP TO 10% OFF YOUR ENTIRE ORDER</p>
             </CodeDialog>
           )
           : (

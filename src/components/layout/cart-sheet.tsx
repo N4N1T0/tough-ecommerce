@@ -32,7 +32,7 @@ const CartSheet = ({ children }: { children: React.ReactNode }) => {
         <div className='py-5 space-y-10 overflow-auto'>
           {cart.map((item) => (
             <div key={item.id} className='flex gap-2 w-full'>
-              <Image src={item.image} alt={item.name} width={100} height={100} />
+              <Image src={item.image} alt={item.name} width={100} height={100} placeholder='blur' blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mM8+R8AApcByuTu2nIAAAAASUVORK5CYII' />
               <div className='flex flex-col justify-between w-full space-y-1'>
                 <strong className='inline-block uppercase md:text-base text-sm'>{item.name}</strong>
                 {item.sale !== null ? <div className='md:text-xl text-base'><span className='line-through text-gray-400'>{item.price} </span> ${item.sale}</div> : <div className='md:text-xl text-base'>{item.price}</div>}
