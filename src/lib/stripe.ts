@@ -5,6 +5,7 @@ export async function checkout ({ items }: { items: Array<{ price: string, quant
   const session = await stripe.checkout.sessions.create({
     mode: 'payment',
     payment_method_types: ['card'],
+    allow_promotion_codes: true,
     success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}`,
     line_items: [
