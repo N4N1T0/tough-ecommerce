@@ -22,7 +22,7 @@ function ProductsCard({ item, score, user, wishListData }: Props) {
   return (
     <div key={item.id} className='border p-2 col-span-1 border-border space-y-2'>
       <Link href={`/products/item/${item.id}`}>
-        <Image src={item.image} alt={item.name} width={350} height={400} />
+        <Image src={item.image} alt={item.name} width={350} height={400} placeholder='blur' blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mM8+R8AApcByuTu2nIAAAAASUVORK5CYII' />
       </Link>
       <div className='flex flex-col md:flex-row justify-between items-start md:items-center gap-3'>
         <Link href={`/products/item/${item.id}`} className='font-semibold text-sm md:text-base hover:text-gray-700 hover:underline transition-all duration-100'>{item.name}</Link>

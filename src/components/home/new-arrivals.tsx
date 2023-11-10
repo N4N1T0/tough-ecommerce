@@ -1,13 +1,11 @@
 // Next.js Import
 import { cookies } from 'next/headers'
-import Link from 'next/link'
-import Image from 'next/image'
 
 // Supabase Imports
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 
 // Components Import
-import RatingClient from '../shared/rating-client'
+import CarrouselProductsCard from '../shared/carrousel-products-card'
 
 const NewArrivals = async ({ title, sport }: { title: string, sport?: string | undefined }) => {
   const supabase = createServerComponentClient<Database>({ cookies })
@@ -31,15 +29,7 @@ const NewArrivals = async ({ title, sport }: { title: string, sport?: string | u
         {products.slice(0, 4).map((item) => {
           const score = item.reviews.map((item) => item.score).reduce((acc, current) => acc + current, 0)
           return (
-            <Link href={`/products/item/${item.id}`} className='col-span-1 space-y-2 gap-5' key={item.id}>
-              <Image src={item.image} alt={item.name} width={250} height={250} />
-              <p className='font-semibold uppercase text-sm'>{item.name}</p>
-              <p>{item.price}</p>
-              <div className='flex justify-between items-center'>
-                <RatingClient score={score} size={15} />
-                <small>{item.reviews.length} Reviews</small>
-              </div>
-            </Link>
+            <CarrouselProductsCard key={item.id} item={item} score={score} />
           )
         })}
       </div>

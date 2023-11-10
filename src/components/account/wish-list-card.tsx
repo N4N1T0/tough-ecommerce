@@ -39,7 +39,7 @@ const WishListCard = ({ item }: Props) => {
     <div key={item.id} className='flex flex-col justify-start items-center gap-2 border border-border p-4 relative col-span-1'>
       {item.products?.image !== undefined && item.products?.name !== undefined && (
         <>
-          <Image src={item?.products?.image} alt={item?.products?.name} width={200} height={200} />
+          <Image src={item?.products?.image} alt={item?.products?.name} width={200} height={200} placeholder='blur' blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mM8+R8AApcByuTu2nIAAAAASUVORK5CYII' />
           <p className='uppercase font-semibold'>{item.products.name}</p>
           {item.products.sale !== null ? <p>{item.products.sale}</p> : <p>{item.products.price}</p>}
           <button className='uppercase bg-black text-white px-3 py-2 hover:bg-white hover:text-black transition-colors duration-200'>add to cart</button>
