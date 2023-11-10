@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { persist, createJSONStorage } from 'zustand/middleware'
+import { persist } from 'zustand/middleware'
 
 interface ToughState {
   cart: productsPropsWithReviews | productsPropsWithoutReviews
@@ -71,8 +71,7 @@ const useStore = create(
   }
 }),
     {
-      name: 'Tough-Cart',
-      storage: createJSONStorage(() => sessionStorage)
+      name: 'Tough-Cart'
     }
 )
 )
