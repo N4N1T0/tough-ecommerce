@@ -22,6 +22,7 @@ import { X } from 'lucide-react'
 // Utils Imports
 import { getHolidays, endCodeDate } from '@/lib/utils'
 import Link from 'next/link'
+import LoginSignTabs from '../login/login-singup-tabs'
 
 export const PromotionDialog = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState<boolean>(false)
@@ -45,8 +46,7 @@ export const PromotionDialog = ({ children }: { children: React.ReactNode }) => 
             <h3 className='font-bold md:text-5xl text-3xl'>SIGN UP & TAKE 15% OFF*</h3>
             <p className='font-bold md:text-xl text-lg'>YOUR FIRST ORDER ON TOUGH.COM</p>
             <p className='text-gray-900 text-lg'>Save on your first order and get email only offers when you join.</p>
-            <input type='email' className='block w-full border border-black font-bold p-2 rounded mt-2' placeholder='Email' required />
-            <button className='block w-full bg-black text-white py-2 rounded'>{label}</button>
+            <LoginSignTabs tab='signup'><button className='block w-full bg-black text-white py-2 px-10 rounded uppercase'>SignUp</button></LoginSignTabs>
           </form>
         </div>
         <DialogClose onClick={() => { setOpen(!open) }} className='absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground'>

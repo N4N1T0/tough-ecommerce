@@ -2,7 +2,7 @@
 import Image from 'next/image'
 
 // Components Imports
-import { LoginBtn } from '../login/login-buttons'
+import { LoginBtn } from './login-buttons'
 
 // Assets Imports
 import Google from '@/assets/Google_2015_logo.svg'

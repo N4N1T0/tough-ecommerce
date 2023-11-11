@@ -5,7 +5,7 @@ import RatingClient from './rating-client'
 import AddToCartBtn from '../products/add-to-cart-btn'
 import WhishListButton from '../products/whish-list-button'
 import { type User } from '@supabase/supabase-js'
-import LoginSignTabs from '../layout/login-singup-tabs'
+import LoginSignTabs from '../login/login-singup-tabs'
 import { User as Profile } from 'lucide-react'
 
 interface Props {

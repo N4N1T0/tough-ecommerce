@@ -18,7 +18,7 @@ import { Menu } from 'lucide-react'
 import { type Session } from '@supabase/supabase-js'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { LogoutBtn } from '../login/login-buttons'
-import LoginSignTabs from './login-singup-tabs'
+import LoginSignTabs from '../login/login-singup-tabs'
 
 const MobileNavlinks = [
   ...navlinks,

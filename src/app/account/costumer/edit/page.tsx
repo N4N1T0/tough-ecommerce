@@ -48,7 +48,6 @@ export default function CostumerEdit() {
           phone: formData.phone,
           password: formData.password
         })
-        .eq('id', user?.id)
         .select()
 
       if (data !== null) {

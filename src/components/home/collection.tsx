@@ -7,7 +7,7 @@ const Collection = () => {
   return (
     <section id='collection' className='flex flex-col md:flex-row px-5 py-10 gap-5 items-center justify-between'>
       <div className='space-y-2'>
-        <Link href='/collection/powerlock'>
+        <Link href='/products/collection/Powerlock'>
           <Image placeholder='blur' src={Powerlock} alt='PowerLock Collection picture' width={890} height={708} />
         </Link>
         <h2 className='font-bold text-2xl uppercase font-kashua pt-1'>Powerlock Collection</h2>
@@ -18,7 +18,7 @@ const Collection = () => {
         </div>
       </div>
       <div className='space-y-2'>
-        <Link href='/collection/titan'>
+        <Link href='/products/collection/Titan'>
           <Image placeholder='blur' src={Titan} alt='Titan Collection picture' width={890} height={708} />
         </Link>
         <h2 className='font-bold text-2xl uppercase font-kashua pt-1'>Titan Collection</h2>

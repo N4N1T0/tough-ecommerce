@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/popover'
 
 // Components Imports
-import LoginSignTabs from './login-singup-tabs'
+import LoginSignTabs from '../login/login-singup-tabs'
 import { LogoutBtn } from '../login/login-buttons'
 
 // Supabase Imports
@@ -32,7 +32,9 @@ const UserPopup = async ({ children }: { children: React.ReactNode }) => {
         <PopoverClose asChild>
           <Link href='/account/wish-list' className='hover:text-gray-700 transition-colors duration-150 uppercase text-left'>Whishlist</Link>
         </PopoverClose>
-        <LogoutBtn className='hover:text-gray-700 transition-colors duration-150 uppercase text-left' />
+        <PopoverClose asChild>
+          <LogoutBtn className='hover:text-gray-700 transition-colors duration-150 uppercase text-left' />
+        </PopoverClose>
       </PopoverContent>
     </Popover>
   ) : (
