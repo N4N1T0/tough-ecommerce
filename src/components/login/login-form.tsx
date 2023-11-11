@@ -14,6 +14,7 @@ import { useToast } from '../ui/use-toast'
 
 // UI Imports
 import { useForm } from 'react-hook-form'
+import Link from 'next/link'
 
 function LoginForm() {
   // Supabase Client and UI Toast
@@ -56,15 +57,31 @@ function LoginForm() {
     router.refresh()
   }
 
+  const resetPassword = async ({ email }: { email: string }) => {
+    const { data } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}`
+    })
+
+    if (data !== null) {
+      console.log(data)
+      toast({
+        title: 'Reset Password Email Send',
+        description: 'Please Check your email account',
+        duration: 5000,
+        action: <Link className='uppercase bg-black text-white w-full py-2 hover:bg-white hover:text-black transition-colors duration-200 text-center' href='https://mail.google.com/mail/u/0/?q=noreply%40mail.app.supabase.io#search/noreply%40mail.app.supabase.io'>Link to the Email</Link>
+      })
+    }
+  }
+
   return (
-    <form onSubmit={(handleSubmit(async (data) => { await loginSubmit(data) }))} >
+    <form >
       <fieldset disabled={isSubmitting} className='space-y-5 py-5'>
         <LabelInput id='email' title='Email' type='email' required register={register('email', { required: 'Email is required' })} error={errors?.email?.message?.toString()} />
         <div className='text-left'>
-          <LabelInput id='password' title='Password' type='password' required register={register('password', { required: 'Password is required' })} error={errors?.password?.message?.toString()} />
-          <p className='text-sm font-bold pt-1 text-right'>Forgot Your Password?</p>
+          <LabelInput id='password' title='Password' type='password' register={register('password')} error={errors?.password?.message?.toString()} />
+          <button onClick={(handleSubmit(async (data) => { await resetPassword(data) }))} className='text-sm font-bold pt-1'>Forgot Your Password?</button>
         </div>
-        <button className='uppercase bg-black text-white w-full py-2 hover:bg-white hover:text-black transition-colors duration-200 group-disabled:pointer-events-none disabled:bg-gray-700'>Login</button>
+        <button onSubmit={(handleSubmit(async (data) => { await loginSubmit(data) }))} className='uppercase bg-black text-white w-full py-2 hover:bg-white hover:text-black transition-colors duration-200 group-disabled:pointer-events-none disabled:bg-gray-700'>Login</button>
       </fieldset>
     </form>
   )

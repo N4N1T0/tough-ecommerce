@@ -4,7 +4,7 @@
 import Image from 'next/image'
 
 // React Imports
-import { type FormEvent, useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 
 // Ui Imports
 import {
@@ -26,23 +26,13 @@ import LoginSignTabs from '../login/login-singup-tabs'
 
 export const PromotionDialog = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState<boolean>(false)
-  const [label, setLabel] = useState<string>('Continue')
 
-  const sendForm = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setLabel('Processing')
-    // Function to send a Promo
-    setTimeout(() => {
-      setLabel('Continue')
-      setOpen(false)
-    }, 2000)
-  }
   return (
     <Dialog open={open}>
       <DialogTrigger onClick={() => { setOpen(!open) }}>{children}</DialogTrigger>
       <DialogContent className='md:p-0 p-10 flex max-w-[700px] w-[300px] shadow-xl bg-white'>
         <div className='grid place-content-center'>
-          <form onSubmit={(e) => { sendForm(e) }} className='text-center space-y-5 px-5'>
+          <form className='text-center space-y-5 px-5'>
             <h3 className='font-bold md:text-5xl text-3xl'>SIGN UP & TAKE 15% OFF*</h3>
             <p className='font-bold md:text-xl text-lg'>YOUR FIRST ORDER ON TOUGH.COM</p>
             <p className='text-gray-900 text-lg'>Save on your first order and get email only offers when you join.</p>

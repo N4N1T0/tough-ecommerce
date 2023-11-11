@@ -22,8 +22,7 @@ export default function CostumerEdit() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
-    getValues
+    formState: { errors, isSubmitting }
   } = useForm({
     defaultValues: async () => {
       const { data: { user } } = await supabase.auth.getUser()
@@ -45,8 +44,7 @@ export default function CostumerEdit() {
         .update({
           name: formData.name,
           email: formData.email,
-          phone: formData.phone,
-          password: formData.password
+          phone: formData.phone
         })
         .select()
 
@@ -78,10 +76,6 @@ export default function CostumerEdit() {
           <LabelInput title='First Name' id='name' register={register('name', { required: true })} type='text' required />
           <LabelInput title='Email' id='email' register={register('email', { required: true })} type='text' required />
           <LabelInput title='Phone Number' id='phone' register={register('phone')} type='tel' />
-          <LabelInput title='Password' id='password' register={register('password')} type='password' />
-          <LabelInput title='Confirm Password' id='confirm_password' type='password' register={register('confirm_password', {
-            validate: (value: string) => value === getValues('password') || 'Password must match'
-          })} />
           {(errors.confirm_password != null) && (
             <p className='text-red-700'>{errors.confirm_password.message?.toString()}</p>
           )}
