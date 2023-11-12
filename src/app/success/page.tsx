@@ -13,28 +13,29 @@ export default function SuccesPage() {
   const SearchParams = useSearchParams()
   const sessionId = SearchParams.get('session_id')
   const supabase = createClientComponentClient<Database>()
-  const emptyCart = useStoreCart(useStore, (state) => state.emptyCart)
   const cart = useStoreCart(useStore, (state) => state.cart)
+  const emptyCart = useStoreCart(useStore, (state) => state.emptyCart)
 
   useEffect(() => {
     const insertOrder = async () => {
-      const { data, error } = await supabase.from('orders').insert({
+      await supabase.from('orders').insert({
         order_id: sessionId,
         total: cart?.map((item) => item.price).reduce((acc, curr) => acc + curr, 0),
         products_id: cart?.map(item => item.id)
       })
         .select()
-
-      console.log('Error', error)
-      console.log('Data', data)
     }
 
-    if (cart !== undefined) {
+    if ((cart != null) && cart.length > 0) {
       insertOrder()
     } else {
       console.log('Nada')
     }
   }, [cart])
+
+  if (emptyCart !== undefined) {
+    setTimeout(() => { emptyCart() }, 10000)
+  }
 
   return (
     <main className='max-w-[1000px] mx-auto px-5 flex flex-col justify-center items-center text-center md:gap-5 gap-2'>
