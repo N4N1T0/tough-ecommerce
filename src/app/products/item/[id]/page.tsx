@@ -1,4 +1,4 @@
-import NewArrivals from '@/components/home/new-arrivals'
+import NewArrivals from '@/components/shared/new-arrivals'
 import AddToRecentlyViewed from '@/components/item/add-to-recently-viewed'
 import ItemLayout from '@/components/item/layout'
 import Reviews from '@/components/item/rewiews'
