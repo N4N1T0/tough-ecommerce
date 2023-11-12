@@ -53,7 +53,6 @@ function SignUpForm() {
       })
 
       if (data !== null) {
-        console.log(data)
         toast({
           title: 'Succesfully SignUp',
           description: 'Please verified your email before login',
@@ -63,7 +62,6 @@ function SignUpForm() {
       }
 
       if (error !== null) {
-        console.log(error)
         toast({
           title: 'Uh oh! Something went wrong.',
           description: 'There was a problem with the signUp, Try Again',
@@ -72,7 +70,6 @@ function SignUpForm() {
         })
       }
     } else {
-      console.log(emailData)
       toast({
         title: 'Your Already have an Account',
         description: 'Please Login, or if you forget your password try in the Login Tab',

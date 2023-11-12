@@ -44,7 +44,6 @@ function LoginForm() {
     })
 
     if (error !== null) {
-      console.log(error)
       toast({
         title: 'Uh oh! Something went wrong.',
         description: 'There was a problem with the Login Try Again',
@@ -63,7 +62,6 @@ function LoginForm() {
     })
 
     if (data !== null) {
-      console.log(data)
       toast({
         title: 'Reset Password Email Send',
         description: 'Please Check your email account',

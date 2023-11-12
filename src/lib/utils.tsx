@@ -49,6 +49,19 @@ export const getDeliverDays = () => {
   return (`${fechaHoy} - ${fechaEnUnaSemana}`)
 }
 
+export const getDeliverDaysOrder = (startDate: any) => {
+  // Crea una copia de la fecha de inicio para evitar modificar el parámetro original
+  const endDate = new Date(startDate)
+
+  // Suma una semana (7 días) a la fecha de inicio
+  endDate.setDate(endDate.getDate() + 7)
+
+  // Formatea las fechas como strings (puedes ajustar el formato según tus necesidades)
+  const endDateString = endDate.toDateString()
+
+  return `${endDateString}`
+}
+
 export const getSizeOfProducts = (products: string) => {
   switch (products) {
     case 'gloves':

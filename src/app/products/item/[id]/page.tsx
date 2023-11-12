@@ -5,6 +5,7 @@ import Reviews from '@/components/item/rewiews'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import Image from 'next/image'
+import Personilzed from '@/components/home/personilzed'
 
 export default async function ItemPage({ params }: { params: { id: string } }) {
   const supabase = createServerComponentClient<Database>({ cookies })
@@ -17,12 +18,13 @@ export default async function ItemPage({ params }: { params: { id: string } }) {
   const score = data[0].reviews.map(item => item.score).reduce((acc, current) => acc + current, 0)
 
   return (
-    <main>
+    <main className='space-y-5'>
       <ItemLayout itemInfo={data[0]} score={score}>
         <Image src={data[0].image} alt={data[0].name} width={1000} height={1000} priority placeholder='blur' blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mM8+R8AApcByuTu2nIAAAAASUVORK5CYII' />
       </ItemLayout>
       <Reviews review={data[0].reviews} productId={data[0].id} />
       <NewArrivals title='You may also like' sport={data[0].sports[0]} />
+      <Personilzed />
       <AddToRecentlyViewed product={data[0]} />
     </main>
   )

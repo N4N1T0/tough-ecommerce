@@ -6,8 +6,6 @@ import useStoreCart from '@/store/useStore'
 function SpanCartNumber() {
   const cart = useStoreCart(useStore, (state) => state.cart)
 
-  console.log(cart)
-
   if (cart?.length === 0 || cart === undefined) {
     return <></>
   }

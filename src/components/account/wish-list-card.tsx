@@ -36,7 +36,7 @@ const WishListCard = ({ item }: Props) => {
   }
 
   return (
-    <div key={item.id} className='flex flex-col justify-start items-center gap-2 border border-border p-4 relative col-span-1'>
+    <div className='flex flex-col justify-start items-center gap-2 border border-border p-4 relative col-span-1'>
       {item.products?.image !== undefined && item.products?.name !== undefined && (
         <>
           <Image src={item?.products?.image} alt={item?.products?.name} width={200} height={200} placeholder='blur' blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mM8+R8AApcByuTu2nIAAAAASUVORK5CYII' />

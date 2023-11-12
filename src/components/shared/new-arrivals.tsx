@@ -26,9 +26,9 @@ const NewArrivals = async ({ title, sport }: { title: string, sport?: string | u
   }
 
   return (
-    <section className='flex justify-between items-center flex-col w-full'>
+    <section className='flex justify-between items-center flex-col w-full gap-3'>
       <h3 className='uppercase font-bold text-2xl'>{title}</h3>
-      <div className='flex snap-x snap-mandatory items-center gap-3 overflow-auto pb-3 lg:gap-5 w-full px-5'>
+      <div className='flex snap-x snap-mandatory items-center gap-3 overflow-auto pb-3 lg:gap-5 w-full px-5 md:justify-center'>
         {products.slice(0, 5).map((item) => {
           const score = item.reviews.map((item) => item.score).reduce((acc, current) => acc + current, 0)
           return (
