@@ -30,7 +30,7 @@ export default function FindPage() {
 
   useEffect(() => {
     const newProduct = type === 'new'
-    const SaleProduct = type === 'sale' ? 0 : 1000
+    const SaleProduct = type === 'sale' ? 1000 : 0
     const getProducts = async () => {
       const { data } = await supabase.from('products')
         .select('*, reviews(*)')
@@ -38,7 +38,7 @@ export default function FindPage() {
         .eq('equipment_type', 'gloves')
         .eq('new', newProduct)
         .gt('price', price)
-        .gt('sale', SaleProduct)
+        .lt('sale', SaleProduct)
       setProducts(data)
     }
     getProducts()
@@ -60,22 +60,20 @@ export default function FindPage() {
     getWishList()
   }, [])
 
-  if (products !== null && user.user !== null && wishList !== null) {
-    return (
-      <section className='max-w-[1400px] mx-auto pt-48'>
-        <div className='flex justify-between items-center'>
-          <h1 className='uppercase font-semibold text-lg md:text-2xl'> Glove Finder <span className='text-xs md:text-sm font-normal lowercase'>({products?.length} Products)</span></h1>
-          <CategoriesMobileSheet category={sport!} />
-        </div>
-        <div className='w-full grid grid-cols-2 md:grid-cols-3 grid-rows-1 gap-5 py-5'>
-          {products?.map((item, idx) => {
-            const score = item.reviews.map(item => item.score).reduce((acc, current) => acc + current, 0)
-            return (
-              <ProductsCard key={item.id} item={item} score={score} user={user.user} wishListData={wishList} />
-            )
-          })}
-        </div>
-      </section>
-    )
-  }
+  return (
+    <section className='max-w-[1400px] mx-auto pt-48'>
+      <div className='flex justify-between items-center'>
+        <h1 className='uppercase font-semibold text-lg md:text-2xl'> Glove Finder <span className='text-xs md:text-sm font-normal lowercase'>({products?.length} Products)</span></h1>
+        <CategoriesMobileSheet category={sport!} />
+      </div>
+      <div className='w-full grid grid-cols-2 md:grid-cols-3 grid-rows-1 gap-5 py-5'>
+        {products?.map((item, idx) => {
+          const score = item.reviews.map(item => item.score).reduce((acc, current) => acc + current, 0)
+          return (
+            <ProductsCard key={item.id} item={item} score={score} user={user.user} wishListData={wishList} />
+          )
+        })}
+      </div>
+    </section>
+  )
 }
