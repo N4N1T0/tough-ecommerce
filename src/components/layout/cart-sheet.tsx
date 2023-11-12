@@ -50,7 +50,7 @@ const CartSheet = ({ children }: { children: React.ReactNode }) => {
         {cart?.length !== 0
           ? (
             <SheetFooter className='bg-gray-200 md:p-5 p-2 flex w-full justify-between items-center text-center gap-2 md:gap-0'>
-              <div className='text-sm md:text-base'>CART SUBTOTAL: <span className='font-bold'>${cart?.map((item) => item.price).reduce((acc, curr) => acc + curr, 0)}</span></div>
+              <div className='text-sm md:text-base'>CART SUBTOTAL: <span className='font-bold'>${cart?.map((item) => item.price).reduce((acc, curr) => acc + curr, 0).toFixed(2)}</span></div>
               <button onClick={async () => { await checkout({ items: stripePrice! }) }} className='bg-black text-white uppercase px-3 py-1 hover:bg-white hover:text-black transition-colors duration-200 font-bold text-sm'>Checkout</button>
             </SheetFooter>
           )
