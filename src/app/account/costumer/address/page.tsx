@@ -23,22 +23,22 @@ import { useToast } from '@/components/ui/use-toast'
 import { countryData } from '@/content'
 
 export default function AddressPage() {
+  // Use State for the address and the userID
   const [address, setAddress] = useState<Array<Database['public']['Tables']['address']['Row']> | null>([])
   const supabase = createClientComponentClient<Database>()
   const { toast } = useToast()
 
+  // Get tha Address from supbase according to the id
   useEffect(() => {
     const getAddress = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (user?.id !== undefined) {
-        const { data } = await supabase.from('address').select('*').eq('user_id', user?.id)
-        setAddress(data)
-      }
+      const { data } = await supabase.from('address').select('*')
+      setAddress(data)
     }
 
     getAddress()
   }, [])
 
+  // React hook form destructuring
   const {
     register,
     handleSubmit,
@@ -46,6 +46,7 @@ export default function AddressPage() {
     reset
   } = useForm()
 
+  // On submit function for the new Address Form
   const onSubmit = async (formData: FieldValues) => {
     const { data: { user } } = await supabase.auth.getUser()
     const { data, error } = await supabase
@@ -62,6 +63,7 @@ export default function AddressPage() {
       })
       .select()
 
+    // Toast for the succesfully updated
     if (data !== null) {
       toast({
         title: 'Succesfully Updated',
@@ -70,6 +72,7 @@ export default function AddressPage() {
       })
     }
 
+    // Toasts for the Errors
     if (error !== null) {
       if (error.code === '23505') {
         toast({
@@ -98,6 +101,7 @@ export default function AddressPage() {
         <div className='flex-1'>
           <HeaderLine text='Address List' />
           <ul className='space-y-5 py-5'>
+            {/* Addredd Lists */}
             {address?.map((item, idx) => (
               <li key={`Address-${item.id}`} className={`border-[1px] p-5 ${item.default ? 'border-black' : 'border-border'}`}>
                 <p>{item.street} , {item.apartment} , {item.city} , {item.country}</p>
@@ -105,7 +109,6 @@ export default function AddressPage() {
               </li>
             ))}
           </ul>
-          {/* Addredd Lists */}
         </div>
         {/* New Address Form */}
         <div className='flex-1'>

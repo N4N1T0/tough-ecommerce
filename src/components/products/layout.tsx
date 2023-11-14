@@ -1,11 +1,18 @@
-import { productsLinks } from '@/content'
+// Next.js Imports
 import Link from 'next/link'
+
+// Assets Imports
+import { productsLinks } from '@/content'
+
+// Ui Imports
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger
 } from '@/components/ui/accordion'
+
+// Components Imports
 import HeaderLine from '../account/header-line'
 
 export default async function ProductsLayout({ children, category, subCategory }: { children: React.ReactNode, category?: string, subCategory?: string }) {

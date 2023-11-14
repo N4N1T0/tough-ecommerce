@@ -1,3 +1,4 @@
+// Components Imports
 import Hero from '@/components/home/hero'
 import Collection from '@/components/home/collection'
 import NewArrivals from '@/components/shared/new-arrivals'

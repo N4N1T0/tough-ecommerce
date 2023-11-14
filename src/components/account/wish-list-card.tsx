@@ -1,9 +1,13 @@
 'use client'
 
+// Next.js Imports
 import Image from 'next/image'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
 
+// Supabase Imports
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+
+// Props Types
 interface Props {
   item: {
     created_at: string
@@ -27,9 +31,11 @@ interface Props {
 }
 
 const WishListCard = ({ item }: Props) => {
+  // Supbase Client and Router fro reffreshing
   const supabse = createClientComponentClient<Database>()
   const router = useRouter()
 
+  // Const for removing the product from the list
   const removeFromWishList = async () => {
     await supabse.from('wishlist').delete().eq('id', item.id)
     router.refresh()

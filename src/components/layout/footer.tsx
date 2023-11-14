@@ -1,7 +1,12 @@
-import { footerLink } from '@/content'
+// Next.js Imports
 import Image from 'next/image'
 import Link from 'next/link'
+
+// Assets Imports
+import { footerLink } from '@/content'
 import Badge from '@/assets/3.png'
+
+// UI Imports
 import {
   Accordion,
   AccordionContent,
@@ -17,6 +22,7 @@ function Footer() {
         <Link href='/team-tough' className='italic hover:text-gray-600 transition-colors duration-200'>Become part of Team Tough</Link>
       </div>
       <div className='hidden gap-5 md:flex'>
+        {/* Links of the Footer */}
         {footerLink.map((item, idx) => (
           <ul key={`Footer-Link-${item.label}-${idx}`}>
             <li className='uppercase font-bold'>{item.label}</li>
@@ -34,7 +40,8 @@ function Footer() {
           <p>MONDAY-FRIDAY</p>
           <p>8 AM - 5 PM CST</p>
         </div>
-      </div>
+      </div>ç
+      {/* Mobile Footer */}
       <Accordion type='multiple' className='block md:hidden w-full'>
         {footerLink.map((item, idx) => (
           <AccordionItem value={item.label} key={`Footer-Link-Mobile-${item.label}-${idx}`}>

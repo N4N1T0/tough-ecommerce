@@ -11,6 +11,7 @@ import { type User, createClientComponentClient } from '@supabase/auth-helpers-n
 import { useState, useEffect } from 'react'
 import ProductsCard from '@/components/shared/products-card'
 
+// Props Type
 type WihsListProps = Array<{
   created_at: string
   id: number
@@ -19,15 +20,21 @@ type WihsListProps = Array<{
 }> | null
 
 export default function FindPage() {
+  // UseState for the Query
   const [products, setProducts] = useState<productsPropsWithReviews | null>(null)
   const [user, setUser] = useState<{ user: User } | { user: null }>({ user: null })
   const [wishList, setwishList] = useState<WihsListProps>(null)
+
+  // Supabase Client
   const supabase = createClientComponentClient<Database>()
+
+  // Params of the Query URL
   const SearchParams = useSearchParams()
   const sport = SearchParams.get('sport')
   const type = SearchParams.get('type')
   const price = SearchParams.get('price')
 
+  // the pasrms of the query to the State
   useEffect(() => {
     const newProduct = type === 'new'
     const SaleProduct = type === 'sale' ? 1000 : 0
@@ -44,6 +51,7 @@ export default function FindPage() {
     getProducts()
   }, [])
 
+  // Fecthing User from Suoabse
   useEffect(() => {
     const getUser = async () => {
       const { data } = await supabase.auth.getUser()
@@ -52,6 +60,7 @@ export default function FindPage() {
     getUser()
   }, [])
 
+  // Fecthinf the WishList from supabse
   useEffect(() => {
     const getWishList = async () => {
       const { data } = await supabase.from('wishlist').select()

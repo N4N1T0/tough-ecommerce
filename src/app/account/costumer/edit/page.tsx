@@ -48,6 +48,7 @@ export default function CostumerEdit() {
         })
         .select()
 
+      // Toasts for the Succesfully updated
       if (data !== null) {
         toast({
           title: 'Succesfully Updated',
@@ -56,6 +57,7 @@ export default function CostumerEdit() {
         })
       }
 
+      // Toasts for the Errors
       if (error !== null) {
         toast({
           title: 'Uh oh! Something went wrong.',

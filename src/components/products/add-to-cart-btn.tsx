@@ -1,9 +1,13 @@
 'use client'
 
+// Zustand Imports
 import useStore from '@/store/store'
+
+// React imports
 import { useState } from 'react'
 
 const AddToCartBtn = ({ product }: { product: productsPropsWithReviewsNoArray | productsPropsWithoutReviewsNoArray }) => {
+  // State for the feedback to the user
   const [isLoading, setIsLoading] = useState(false)
   const { addToCart } = useStore()
 

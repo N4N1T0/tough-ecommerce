@@ -1,8 +1,14 @@
-import { getDeliverDaysOrder } from '@/lib/utils'
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+// Next.js Imports
 import { cookies } from 'next/headers'
 import Link from 'next/link'
 
+// Utils Imports
+import { getDeliverDaysOrder } from '@/lib/utils'
+
+// Supabase Imports
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+
+// Props Type
 interface Props {
   items: {
     created_at: string
@@ -15,8 +21,10 @@ interface Props {
 }
 
 async function OrdersListCard({ items }: Props) {
+  // Supabase Client
   const supabse = createServerComponentClient<Database>({ cookies })
 
+  // Fecthing Data from supabase for the Products
   const { data: productsItems } = await supabse.from('products').select().in('id', items.products_id!)
   const { data: address } = await supabse.from('address').select()
 

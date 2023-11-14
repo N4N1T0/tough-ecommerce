@@ -1,5 +1,7 @@
+// React Hook Type imports
 import { type UseFormRegisterReturn } from 'react-hook-form'
 
+// Props Type
 interface Props {
   title: string
   id: string

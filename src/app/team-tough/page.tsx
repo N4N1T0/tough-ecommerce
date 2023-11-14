@@ -1,4 +1,7 @@
+// Next.js Imports
 import Image from 'next/image'
+
+// Assets Imports
 import Banner from '@/assets/Main_Banner_ProTeam.jpg'
 import { teamTough } from '@/content'
 

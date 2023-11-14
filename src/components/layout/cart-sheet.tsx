@@ -1,5 +1,8 @@
 'use client'
 
+// Next.js Imports
+import Image from 'next/image'
+
 // Ui Imports
 import {
   Sheet,
@@ -10,14 +13,20 @@ import {
   SheetTrigger,
   SheetFooter
 } from '@/components/ui/sheet'
+
+// Zustand Imports
 import useStore from '@/store/store'
-import Image from 'next/image'
 import RemoveFromCart from '../products/remove-from-cart'
-import { checkout } from '@/lib/stripe'
 import useStoreCart from '@/store/useStore'
 
+// Stripe Utils Imports
+import { checkout } from '@/lib/stripe'
+
 const CartSheet = ({ children }: { children: React.ReactNode }) => {
+  // List of Products in the Cart
   const cart = useStoreCart(useStore, (state) => state.cart)
+
+  // Stripe id of the prodcuts for the CHeckout
   const stripePrice = cart?.map((item) => {
     return {
       price: item.stripe_id,
@@ -47,6 +56,7 @@ const CartSheet = ({ children }: { children: React.ReactNode }) => {
             </div>
           ))}
         </div>
+        {/* Cart Totatl */}
         {cart?.length !== 0
           ? (
             <SheetFooter className='bg-gray-200 md:p-5 p-2 flex w-full justify-between items-center text-center gap-2 md:gap-0'>

@@ -11,25 +11,25 @@ import { useToast } from '@/components/ui/use-toast'
 import HeaderLine from '@/components/account/header-line'
 
 export default function AccountEmailList() {
+  // Constanst for the Supabase CLient and the toast
   const supabase = createClientComponentClient<Database>()
   const { toast } = useToast()
 
+  // React Hook Form Destructuring
   const {
     register,
     handleSubmit,
     formState: { isSubmitting }
   } = useForm({
     defaultValues: async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (user?.id !== undefined) {
-        const { data } = await supabase.from('profiles').select('future_deals_signup, new_products_alerts_signup').eq('id', user?.id)
-        if (data !== null) {
-          return data[0]
-        }
+      const { data } = await supabase.from('profiles').select('future_deals_signup, new_products_alerts_signup')
+      if (data !== null) {
+        return data[0]
       }
     }
   })
 
+  // on Submit function for the Email Updated
   const onSubmit = async (formData: FieldValues) => {
     const { data: { user } } = await supabase.auth.getUser()
     if (user?.id !== undefined) {
@@ -42,6 +42,7 @@ export default function AccountEmailList() {
         .eq('id', user?.id)
         .select()
 
+      // Toast fo the Succesfully Updated
       if (data !== null) {
         toast({
           title: 'Succesfully Updated',
@@ -50,6 +51,7 @@ export default function AccountEmailList() {
         })
       }
 
+      // Toast for the Error
       if (error !== null) {
         toast({
           title: 'Uh oh! Something went wrong.',

@@ -1,6 +1,7 @@
 'use client'
 
 // Next.js Imports
+import Link from 'next/link'
 import Image from 'next/image'
 
 // React Imports
@@ -19,12 +20,15 @@ import PromoPic from '@/assets/Promotion.jpg'
 import CodePic from '@/assets/Code-promotion.jpg'
 import { X } from 'lucide-react'
 
-// Utils Imports
-import { getHolidays, endCodeDate } from '@/lib/utils'
-import Link from 'next/link'
+// Components Imports
 import LoginSignTabs from '../login/login-singup-tabs'
 
+// Utils Imports
+import { getHolidays, endCodeDate } from '@/lib/utils'
+
+// PROMOTION
 export const PromotionDialog = ({ children }: { children: React.ReactNode }) => {
+  // Stae for the dialog, to make it a controlled Component
   const [open, setOpen] = useState<boolean>(false)
 
   return (
@@ -49,11 +53,14 @@ export const PromotionDialog = ({ children }: { children: React.ReactNode }) => 
   )
 }
 
+// CODE
 export const CodeDialog = ({ children }: { children: React.ReactNode }) => {
+  // Stae for the dialog, to make it a controlled Component
   const [open, setOpen] = useState<boolean>(false)
   const [codeOpen, setCodeOpen] = useState<boolean>(false)
   const inputRef = useRef<HTMLInputElement | null>(null)
 
+  // Funtion to copy to the clipbard
   const copyToClipboard = () => {
     if (inputRef.current !== null) {
       const textToCopy = inputRef.current.value

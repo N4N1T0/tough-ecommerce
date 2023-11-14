@@ -1,20 +1,28 @@
+// Next.js Imports
+import Image from 'next/image'
+import { cookies } from 'next/headers'
+
+// Components Imports
 import NewArrivals from '@/components/shared/new-arrivals'
 import AddToRecentlyViewed from '@/components/item/add-to-recently-viewed'
 import ItemLayout from '@/components/item/layout'
-import Reviews from '@/components/item/rewiews'
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
-import Image from 'next/image'
 import Personilzed from '@/components/home/personilzed'
+import Reviews from '@/components/item/rewiews'
+
+// Supabase Imports
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 
 export default async function ItemPage({ params }: { params: { id: string } }) {
+  // Supbase constant and fetch
   const supabase = createServerComponentClient<Database>({ cookies })
   const { data, error } = await supabase.from('products').select('*, reviews(*)').eq('id', params.id)
 
+  // Returning if there is an Error
   if (error !== null) {
     return <h1>{error.message}</h1>
   }
 
+  // Score for the Rating
   const score = data[0].reviews.map(item => item.score).reduce((acc, current) => acc + current, 0)
 
   return (

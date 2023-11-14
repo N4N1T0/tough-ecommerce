@@ -1,8 +1,12 @@
 'use client'
 
-import useStore from '@/store/store'
+// Next.js Imports
 import { useRouter } from 'next/navigation'
 
+// Zustand Imports
+import useStore from '@/store/store'
+
+// Props type
 interface Props {
   wishlist?: Array<{
     created_at: string
@@ -26,8 +30,11 @@ interface Props {
 }
 
 const WishListMenu = ({ wishlist }: Props) => {
+  // Zustand function to add to the cart
   const { addAllToCart } = useStore()
   const router = useRouter()
+
+  // getting items from the props
   const products = wishlist?.map((item) => (item.products))
 
   if (products !== undefined) {

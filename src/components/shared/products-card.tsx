@@ -1,13 +1,20 @@
+// Next.js Imports
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+
+// Components Imports
 import RatingClient from './rating-client'
 import AddToCartBtn from '../products/add-to-cart-btn'
 import WhishListButton from '../products/whish-list-button'
-import { type User } from '@supabase/supabase-js'
 import LoginSignTabs from '../login/login-singup-tabs'
+
+// Assets imports
 import { User as Profile } from 'lucide-react'
 
+// Supabase Imports
+import { type User } from '@supabase/supabase-js'
+
+// Props type
 interface Props {
   item: productsPropsWithReviewsNoArray
   score: number

@@ -1,6 +1,7 @@
 // useStore.ts
 import { useState, useEffect } from 'react'
 
+// Hook to make it work with Next.js to Avoid hHydration Problems
 const useStoreCart = <T, F>(
   store: (callback: (state: T) => unknown) => unknown,
   callback: (state: T) => F

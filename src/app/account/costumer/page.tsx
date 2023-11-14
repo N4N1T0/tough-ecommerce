@@ -14,6 +14,7 @@ export default async function AccountCostuner() {
   const { data: user } = await supabase.auth.getUser()
   const { data, error } = await supabase.from('profiles').select('*, address(*)').eq('id', user.user!.id)
 
+  // returning Error Message in case there is an Error
   if (error != null) {
     return <h1>{error.message}</h1>
   }
@@ -57,7 +58,7 @@ export default async function AccountCostuner() {
           </div>
         </div>
       </div>
-      {/*  */}
+      {/* Address Book */}
       <div>
         <HeaderLine text='Address Book'><Link href='/account/costumer/address' className='underline hover:text-gray-600 transition-colors duration-200'>Manage adress</Link></HeaderLine>
         <div className='flex justify-between items-start flex-col md:flex-row md:gap-10 gap-5 py-5 md:py-0'>

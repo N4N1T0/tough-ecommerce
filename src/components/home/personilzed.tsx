@@ -1,11 +1,17 @@
 'use client'
+
+// Zustand Imports
 import useStore from '@/store/store'
-import CarrouselProductsCard from '../shared/carrousel-products-card'
 import useStoreCart from '@/store/useStore'
 
+// Components Imports
+import CarrouselProductsCard from '../shared/carrousel-products-card'
+
 const Personilzed = () => {
+  // prodcust from the store RECENTLY ADDED
   const recentlyViewed = useStoreCart(useStore, (state) => state.recentlyViewed)
 
+  // if theres more or iqual to 5 products show
   if (recentlyViewed !== undefined && recentlyViewed.length >= 5) {
     return (
       <section className='p-5 md:p-10 flex justify-between items-center flex-col w-full'>

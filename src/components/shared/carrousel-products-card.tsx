@@ -1,8 +1,11 @@
+// Next.js Imports
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+
+// Components Imports
 import RatingClient from './rating-client'
 
+// Props Types
 interface Props {
   item: productsPropsWithReviewsNoArray
   score: number

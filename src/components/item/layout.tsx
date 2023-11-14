@@ -1,8 +1,14 @@
+// Next.js Imports
 import Link from 'next/link'
+
+// Utils Imports
 import { getDeliverDays, getSizeOfProducts } from '@/lib/utils'
+
+// Components Imports
 import ItemsBtn from './items-btn'
 import RatingClient from '../shared/rating-client'
 
+// Props Type
 interface Props {
   itemInfo: productsPropsWithReviewsNoArray
   children: React.ReactNode
@@ -10,6 +16,7 @@ interface Props {
 }
 
 function ItemLayout({ children, itemInfo, score }: Props) {
+  // get the size acording to the equipment_type
   const sizes = getSizeOfProducts(itemInfo.equipment_type)
 
   return (

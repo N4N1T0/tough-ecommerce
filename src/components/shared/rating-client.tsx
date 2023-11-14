@@ -1,7 +1,9 @@
 'use client'
 
+// React Simple Start Imports
 import { Rating } from 'react-simple-star-rating'
 
+// Makening CLient
 const RatingClient = ({ score, size }: { score: number, size: number }) => {
   return (
     <Rating

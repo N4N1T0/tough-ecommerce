@@ -1,3 +1,7 @@
+// Next.js Imports
+import Link from 'next/link'
+
+// UI Imports
 import {
   Sheet,
   SheetContent,
@@ -5,8 +9,9 @@ import {
   SheetTitle,
   SheetTrigger
 } from '@/components/ui/sheet'
+
+// Assets Imports
 import { accountLinks } from '@/content'
-import Link from 'next/link'
 
 const AccountMobileSheet = () => {
   return (
@@ -21,6 +26,7 @@ const AccountMobileSheet = () => {
           <SheetHeader>
             <SheetTitle>Accounts Links</SheetTitle>
             <ul className='px-5'>
+              {/* Account Links for the mobile */}
               {accountLinks.map((item, idx) => (
                 <li key={`Account-link-${item.label}-${idx}`} className='uppercase text-md font-semibold w-full pt-5'>
                   <Link className='hover:underline mt-4' href={item.link}>{item.label}</Link>

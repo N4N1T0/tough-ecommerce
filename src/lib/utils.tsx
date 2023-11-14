@@ -1,21 +1,24 @@
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
+// Function to merge the classname
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+// Function to create the date of the code promotion end
 export const endCodeDate = () => {
   const today = new Date()
   const nextMonth = new Date(today)
   nextMonth.setMonth(today.getMonth() + 1)
-  const formattedDate = nextMonth.toLocaleDateString() // Formatear la fecha
+  const formattedDate = nextMonth.toLocaleDateString()
 
   return (
     <h3 className='font-bold text-3xl'>UNLOCK UP TO 50% OFF NOW - {formattedDate}</h3>
   )
 }
 
+// Get holidays Text for the promotions
 export const getHolidays = () => {
   const todayMonth = new Date().getMonth() + 1
   switch (todayMonth) {
@@ -34,34 +37,27 @@ export const getHolidays = () => {
   }
 }
 
+// Function to create the dalivery dat accordding to the today Date
 export const getDeliverDays = () => {
-  // Obten la fecha de hoy
   const hoy = new Date()
-
-  // Suma una semana (7 días) a la fecha de hoy
   const fechaDentroDeUnaSemana = new Date(hoy)
   fechaDentroDeUnaSemana.setDate(hoy.getDate() + 7)
-
-  // Formatea las fechas como strings (puedes ajustar el formato según tus necesidades)
   const fechaHoy = hoy.toDateString()
   const fechaEnUnaSemana = fechaDentroDeUnaSemana.toDateString()
 
   return (`${fechaHoy} - ${fechaEnUnaSemana}`)
 }
 
+// Functio to create the deliver day according to the date of the order
 export const getDeliverDaysOrder = (startDate: any) => {
-  // Crea una copia de la fecha de inicio para evitar modificar el parámetro original
   const endDate = new Date(startDate)
-
-  // Suma una semana (7 días) a la fecha de inicio
   endDate.setDate(endDate.getDate() + 7)
-
-  // Formatea las fechas como strings (puedes ajustar el formato según tus necesidades)
   const endDateString = endDate.toDateString()
 
   return `${endDateString}`
 }
 
+// Size Chart for the products
 export const getSizeOfProducts = (products: string) => {
   switch (products) {
     case 'gloves':
@@ -83,6 +79,7 @@ export const getSizeOfProducts = (products: string) => {
   }
 }
 
+// Encode Prodcut Date
 export const encodeProductDate = (fecha: string) => {
   const d = new Date(fecha)
   return d.toDateString()

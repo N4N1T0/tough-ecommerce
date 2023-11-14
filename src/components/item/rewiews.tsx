@@ -1,7 +1,11 @@
+// Utils Imports
 import ReviewForm from './review-form'
+
+// Compnents Imports
 import { encodeProductDate } from '@/lib/utils'
 import RatingClient from '../shared/rating-client'
 
+// Props Type
 interface Props {
   review: Array<{
     created_at: string
@@ -15,6 +19,7 @@ interface Props {
 }
 
 const Reviews = ({ review, productId }: Props) => {
+  // Score for the Rating
   const score = review.map((item) => item.score).reduce((acc, current) => acc + current, 0)
 
   return (

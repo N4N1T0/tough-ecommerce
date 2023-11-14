@@ -20,6 +20,7 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { LogoutBtn } from '../login/login-buttons'
 import LoginSignTabs from '../login/login-singup-tabs'
 
+// User added to the Navlinks
 const MobileNavlinks = [
   ...navlinks,
   {
@@ -29,8 +30,12 @@ const MobileNavlinks = [
 ]
 
 const NavSheet = async () => {
+  // Supbase Client
   const supabase = createServerComponentClient({ cookies })
+
+  // Get Seesion from the Supabase Auth
   const { data: { session } } = await supabase.auth.getSession()
+
   return (
     <Sheet>
       <SheetTrigger className='md:hidden'><Menu className='h-6 w-6' /></SheetTrigger>

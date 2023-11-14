@@ -1,21 +1,36 @@
 'use client'
 
+// Next.js Imports
 import { useSearchParams } from 'next/navigation'
+import Link from 'next/link'
+import Image from 'next/image'
+
+// Zustand Imports
 import useStore from '@/store/store'
 import useStoreCart from '@/store/useStore'
+
+// React Imports
 import { useEffect } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
+
+// Supabse Imports
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+
+// Assets Imports
 import Success from '@/assets/Success.jpg'
 
 export default function SuccesPage() {
+  // Query fecth for the Order id
   const SearchParams = useSearchParams()
   const sessionId = SearchParams.get('session_id')
+
+  // Supabase CLient
   const supabase = createClientComponentClient<Database>()
+
+  // Zustand Hook fto the store
   const cart = useStoreCart(useStore, (state) => state.cart)
   const emptyCart = useStoreCart(useStore, (state) => state.emptyCart)
 
+  // Insert Order in supbase
   useEffect(() => {
     const insertOrder = async () => {
       await supabase.from('orders').insert({

@@ -1,5 +1,6 @@
 'use client'
 
+// Next.js Imports
 import { useRouter } from 'next/navigation'
 
 // React Imports
@@ -23,12 +24,16 @@ import { countryData } from '@/content'
 import Link from 'next/link'
 
 export default function EditAddress({ params }: { params: { id: string } }) {
+  // Use State for the address and the userID
   const [address, setAddress] = useState<Array<Database['public']['Tables']['address']['Row']> | null>([])
   const [userId, setUserId] = useState<string | undefined>(undefined)
+
+  // Constants for the Supbase client, Toast and the Router
   const supabase = createClientComponentClient<Database>()
   const { toast } = useToast()
   const router = useRouter()
 
+  // Get tha Address from supbase according to the id
   useEffect(() => {
     const getAddress = async () => {
       const { data: { user } } = await supabase.auth.getUser()
@@ -40,14 +45,14 @@ export default function EditAddress({ params }: { params: { id: string } }) {
     getAddress()
   }, [])
 
-  if (address !== null) {
-    if (address?.length > 0) {
-      if (address[0].user_id !== userId) {
-        router.back()
-      }
+  // return to the page before if there is no address or no id
+  if (address !== null && address?.length > 0) {
+    if (address[0].user_id !== userId) {
+      router.back()
     }
   }
 
+  // React hook form destructuring
   const {
     register,
     handleSubmit,
@@ -61,6 +66,7 @@ export default function EditAddress({ params }: { params: { id: string } }) {
     }
   })
 
+  // on Submit function for the form
   const onSubmit = async (formData: FieldValues) => {
     const { data: { user } } = await supabase.auth.getUser()
     const { data, error } = await supabase
@@ -78,6 +84,7 @@ export default function EditAddress({ params }: { params: { id: string } }) {
       .eq('id', params.id)
       .select()
 
+    // Toast for the succesfully updated
     if (data !== null) {
       toast({
         title: 'Succesfully Updated',
@@ -87,6 +94,7 @@ export default function EditAddress({ params }: { params: { id: string } }) {
       })
     }
 
+    // Toasts for the Errors
     if (error !== null) {
       if (error.code === '23505') {
         toast({
@@ -113,6 +121,7 @@ export default function EditAddress({ params }: { params: { id: string } }) {
         <fieldset className='flex flex-col gap-5 py-5 justify-start group' disabled={isSubmitting}>
           <LabelInput title='Street Address' id='street' register={register('street', { required: 'The street Address is required' })} type='text' required error={errors?.street?.message?.toString()} />
           <LabelInput title='Apartament' id='apartment' register={register('apartment')} type='text' />
+          {/* List of Countires */}
           <label htmlFor='countries' className='font-semibold [&>input]:font-normal space-y-2'>Country <span className='text-red-800'>*</span>
             <select className='border-border border p-3 w-full' {...register('country', { required: true })}>
               {countryData.map((country, idx) => (

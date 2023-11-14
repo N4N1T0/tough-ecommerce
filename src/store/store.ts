@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
+// Props Types
 interface ToughState {
   cart: productsPropsWithReviews | productsPropsWithoutReviews
   recentlyViewed: productsPropsWithReviews
@@ -11,6 +12,7 @@ interface ToughState {
   addToRecentlyViewed: (params: productsPropsWithReviewsNoArray) => void
 }
 
+// ZUstand Store
 const useStore = create(
   persist<ToughState>(
   (set) => ({

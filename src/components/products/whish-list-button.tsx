@@ -1,8 +1,12 @@
 'use client'
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+// Next.js Imports
 import { useRouter } from 'next/navigation'
 
+// Supabase Imports
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+
+// Props Type
 interface Props {
   userId: string | undefined
   productId: number
@@ -16,9 +20,11 @@ interface Props {
 }
 
 const WhishListButton = ({ userId, productId, wishlist, heart = false }: Props) => {
+  // Supbaase Client
   const supabse = createClientComponentClient<Database>()
   const router = useRouter()
 
+  // function to inster the item in the wishList
   const insertItemInWishList = async (userId: string, productId: number) => {
     if ((wishlist?.some(item => item.product_id === productId)) ?? false) {
       await supabse.from('wishlist').delete().eq('product_id', productId)

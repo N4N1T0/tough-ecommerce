@@ -1,3 +1,9 @@
+// Next.js Imports
+import { cookies } from 'next/headers'
+import Image from 'next/image'
+import Link from 'next/link'
+
+// UI Imports
 import {
   Sheet,
   SheetContent,
@@ -7,14 +13,16 @@ import {
   SheetTrigger,
   SheetFooter
 } from '@/components/ui/sheet'
+
+// Supbase Imports
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
-import Image from 'next/image'
-import Link from 'next/link'
+
+// Components Imports
 import AddToCartBtn from '../products/add-to-cart-btn'
 import WhishListButton from '../products/whish-list-button'
 
 const CompleteSet = async ({ collection, itemName }: { collection: string | null, itemName: string }) => {
+  // Supbase Client
   const supabase = createServerComponentClient<Database>({ cookies })
 
   // return null if there is no collection

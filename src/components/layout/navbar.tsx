@@ -1,10 +1,9 @@
 // Next.js Imports
 import Link from 'next/link'
-
-// Info Imports
-import { navlinks } from '@/content'
+import { cookies } from 'next/headers'
 
 // Assets Imports
+import { navlinks } from '@/content'
 import { ShoppingCart, User } from 'lucide-react'
 
 // Components Imports
@@ -12,13 +11,18 @@ import { PromotionDialog, CodeDialog } from './promotions-dialogs'
 import CartSheet from './cart-sheet'
 import NavSheet from './navbar-sheet'
 import UserPopup from './user-popup'
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
 import SpanCartNumber from './span-cart-number'
 
+// Supbase Imports
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+
 const Navbar = async () => {
+  // Supabase Client
   const supabase = createServerComponentClient<Database>({ cookies })
+
+  // Seesion from the Supabase Auth
   const { data: { session } } = await supabase.auth.getSession()
+
   return (
     <header className='pt-5 space-y-4 w-full fixed bg-white z-10'>
       <nav className='flex justify-between items-center px-8'>

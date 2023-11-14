@@ -1,17 +1,24 @@
 'use client'
 
+// Next.js Imports
 import Image from 'next/image'
 import Link from 'next/link'
+
+// React Imports
 import { useState } from 'react'
+
+// Assets Imports
 import GloveFinder from '@/assets/glovefinder-screen.jpg'
 
 export default function GloveFinderPage() {
+  // States for the Slides and the final Query
   const [slide, setSlide] = useState(0)
   const [productsType, setProductsType] = useState({
     sport: '',
     type: ''
   })
 
+  // function for each option on the slide
   const handleSLide = (slide: number, productType: keyof typeof productsType, setProduct: string) => {
     setSlide(slide)
     setProductsType({
@@ -36,6 +43,7 @@ export default function GloveFinderPage() {
         </section >
       }
 
+      {/* SPORTS */}
       {slide === 1 &&
         <section className='w-full flex flex-col md:flex-row pt-40 px-10 gap-10' id='sport'>
           <div className='flex-1 text-2xl md:text-5xl font-bold'>
@@ -47,6 +55,7 @@ export default function GloveFinderPage() {
           </div>
         </section>}
 
+      {/* SALE OR NEW */}
       {slide === 2 &&
         <section className='w-full flex flex-col md:flex-row pt-40 px-10 gap-10' id='type' >
           <div className='flex-1 text-2xl md:text-5xl font-bold'>
@@ -58,6 +67,7 @@ export default function GloveFinderPage() {
           </div>
         </section>}
 
+      {/* PRICE */}
       {slide === 3 &&
         <section className='w-full flex flex-col md:flex-row pt-40 px-10 gap-10' id='price' >
           <div className='flex-1 text-2xl md:text-5xl font-bold'>

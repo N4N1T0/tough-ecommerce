@@ -18,26 +18,32 @@ import { LogoutBtn } from '../login/login-buttons'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 
 const UserPopup = async ({ children }: { children: React.ReactNode }) => {
+  // Supbase Client
   const supabase = createServerComponentClient({ cookies })
+
+  // Get Seesion from the Supbase Auth
   const { data: { session } } = await supabase.auth.getSession()
 
-  // eslint-disable-next-line multiline-ternary
-  return session != null ? (
-    <Popover>
-      <PopoverTrigger className='hidden md:block'>{children}</PopoverTrigger >
-      <PopoverContent className='bg-white flex flex-col gap-3'>
-        <PopoverClose asChild>
-          <Link href='/account/costumer' className='hover:text-gray-700 transition-colors duration-150 uppercase text-left'>Account</Link>
-        </PopoverClose>
-        <PopoverClose asChild>
-          <Link href='/account/wish-list' className='hover:text-gray-700 transition-colors duration-150 uppercase text-left'>Whishlist</Link>
-        </PopoverClose>
-        <PopoverClose asChild>
-          <LogoutBtn className='hover:text-gray-700 transition-colors duration-150 uppercase text-left' />
-        </PopoverClose>
-      </PopoverContent>
-    </Popover>
-  ) : (
+  if (session !== null) {
+    return (
+      <Popover>
+        <PopoverTrigger className='hidden md:block'>{children}</PopoverTrigger >
+        <PopoverContent className='bg-white flex flex-col gap-3'>
+          <PopoverClose asChild>
+            <Link href='/account/costumer' className='hover:text-gray-700 transition-colors duration-150 uppercase text-left'>Account</Link>
+          </PopoverClose>
+          <PopoverClose asChild>
+            <Link href='/account/wish-list' className='hover:text-gray-700 transition-colors duration-150 uppercase text-left'>Whishlist</Link>
+          </PopoverClose>
+          <PopoverClose asChild>
+            <LogoutBtn className='hover:text-gray-700 transition-colors duration-150 uppercase text-left' />
+          </PopoverClose>
+        </PopoverContent>
+      </Popover>
+    )
+  }
+
+  return (
     <Popover>
       <PopoverTrigger className='hidden md:block'>{children}</PopoverTrigger >
       <PopoverContent className='bg-white flex flex-col gap-3'>
