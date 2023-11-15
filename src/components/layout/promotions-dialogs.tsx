@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/dialog'
 
 // Assets Imports
-import PromoPic from '../../assets/Promotion.jpg'
+import PromoPic from '@/assets/promotion.jpg'
 import CodePic from '@/assets/Code-promotion.jpg'
 import { X } from 'lucide-react'
 
