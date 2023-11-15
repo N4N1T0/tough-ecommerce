@@ -19,7 +19,9 @@ export function Toaster() {
         return (
           <Toast key={id} {...props}>
             <div className='grid gap-1'>
+              {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions */}
               {title && <ToastTitle>{title}</ToastTitle>}
+              {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions */}
               {description && (
                 <ToastDescription>{description}</ToastDescription>
               )}

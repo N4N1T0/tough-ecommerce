@@ -27,5 +27,10 @@
         "@typescript-eslint/no-floating-promises": "off",
         "@typescript-eslint/no-misused-promises": "off",
         "jsx-quotes": ["error", "prefer-single"]
+    },
+    "settings": {
+    "react": {
+      "version": "18"
     }
+  }
 }
