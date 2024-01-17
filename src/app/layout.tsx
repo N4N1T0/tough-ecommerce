@@ -18,10 +18,36 @@ const poppins = Poppins({ weight: ['400', '500', '600', '700'], subsets: ['latin
 // Metadata
 export const metadata: Metadata = {
   title: 'Tough Fighting Gear',
-  description: 'Fighting gear store',
+  description: 'Explore top-notch combat sports gear at our online store. Elevate your performance with premium equipment. Shop now!',
   authors: [{ name: 'Adrian "Nano" Alvarez' }],
   generator: 'Next.js',
-  icons: { icon: '/favicon.ico' }
+  icons: { icon: '/favicon.ico' },
+  openGraph: {
+    title: 'Tough Fighting Gear - Gear Up For a Fight',
+    description: 'Explore top-notch combat sports gear at our online store. Elevate your performance with premium equipment. Shop now!',
+    siteName: 'Tough Fighting Gear',
+    images: [
+      {
+        url: 'https://tough-ecommerce.vercel.app/fresh.jpg',
+        width: 1200,
+        height: 631,
+        alt: 'Open Graph Picture for Tough Fighting Gear'
+      }
+    ],
+    locale: 'en_US',
+    type: 'website'
+  },
+  formatDetection: {
+    email: true,
+    address: false,
+    telephone: true
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Tough Fighting Gear - Gear Up For a Fight',
+    description: 'Explore top-notch combat sports gear at our online store. Elevate your performance with premium equipment. Shop now!',
+    images: ['https://tough-ecommerce.vercel.app/fresh.jpg']
+  }
 }
 
 export const dynamic = 'force-dynamic'
